@@ -1,0 +1,23 @@
+﻿# ==== OS / IDE junk ====
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# ==== If you use a JS toolchain (safe to keep even if unused) ====
+node_modules/
+.cache/
+.tmp/
+dist/
+build/
+*.map
+
+# ==== Drafts / temp (optional) ====
+_preview/
+*.bak-*
+*.log
+
+# IMPORTANT: Do NOT ignore your actual site files.
+# Keep all *.html, *.css, *.js, images, sitemap.xml, robots.txt, CNAME,
+# and your {INDEXNOW_KEY}.txt committed.

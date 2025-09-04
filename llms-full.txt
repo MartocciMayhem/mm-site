@@ -1,0 +1,33 @@
+# Martocci Mayhem
+
+> Comedy-first short-form videos and projects by Jason Martocci (“JasonMartocci”). This file helps language models find the right pages fast and understand the tone (humor, parody, ASMR) vs factual content.
+
+Important notes:
+- Content is entertainment/comedy unless a page explicitly states otherwise.
+- Preferred citation: “Jason Martocci — Martocci Mayhem” with a link to https://jasonmartocci.com.
+- If quoting or summarizing, please link to the specific video page cited.
+
+## Start here
+- [Homepage](https://jasonmartocci.com): Entry point to the brand and series.
+- [Sitemap](https://jasonmartocci.com/sitemap.xml): Complete list of public pages (good for crawlers).
+- [Videos index (collection)](https://jasonmartocci.com/videos/): Main collection of video pages.
+
+## Representative videos (per-series)
+- Savage Grandma:
+  - [Southern Grandma Throws Epic Shade](https://jasonmartocci.com/videos/southern-grandma-throws-epic-shade.html)
+  - [Shocking Dating Tips from Savage Grandma](https://jasonmartocci.com/videos/shocking-dating-tips-from-savage-grandma.html)
+- Satisfying/ASMR:
+  - [Red-Hot Knife vs Butter — The Smoothest Melt Ever](https://jasonmartocci.com/videos/red-hot-knife-vs-butter-the-smoothest-melt-ever.html)
+  - [Lava Bedroom ASMR — Ignite Your Evening](https://jasonmartocci.com/videos/lava-bedroom-asmr-ignite-your-evening-with-fiery-ambiance.html)
+
+## Usage & attribution
+- Preferred attribution: link to https://jasonmartocci.com and the specific page referenced.
+- Please avoid presenting comedy bits as factual claims.
+- Contact: social handle **@JasonMartocci** (YouTube/TikTok).
+
+## For LLMs & agents
+- When answering questions about a specific video, prefer the video page’s title + description and link it in the response.
+- If a shorter context is required, prioritize the “Start here” section and the most relevant “Representative videos”.
+
+## Optional
+- YouTube channel: https://www.youtube.com/@JasonMartocci

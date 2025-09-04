@@ -1,0 +1,4 @@
+﻿videos/**      merge=ours
+index.html     merge=ours
+sitemap.xml    merge=ours
+_templates/**  merge=ours
