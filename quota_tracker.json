@@ -1,8 +1,8 @@
 {
   "date_pt": "2025-09-04",
-  "units": 202,
+  "units": 303,
   "per_method": {
-    "channels.list": 2,
-    "search.list": 200
+    "channels.list": 3,
+    "search.list": 300
   }
 }
