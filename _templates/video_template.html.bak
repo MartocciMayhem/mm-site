@@ -248,7 +248,7 @@
   <section>
     <!-- Title + Stats (above the video) -->
     <div class="card" id="video-meta">
-        <h1 class="page-title">{{ title | truncate(60) }}</h1>
+        <h1 class="page-title h2">{{ title | truncate(60) }}</h1>
 
         <div class="meta" style="margin-top:8px; display:flex; gap:12px; flex-wrap:wrap;">
         <span>Views: {{ view_count }}</span>
