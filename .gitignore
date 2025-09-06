@@ -1,23 +1,56 @@
-﻿# ==== OS / IDE junk ====
+﻿# ==== Python env & bytecode ====
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+.python-version
+
+# ==== Packaging / build ====
+build/
+dist/
+.eggs/
+*.egg-info/
+pip-wheel-metadata/
+
+# ==== Tests / coverage ====
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ==== OS / IDE ====
 .DS_Store
 Thumbs.db
 Desktop.ini
 .vscode/
 .idea/
 
-# ==== If you use a JS toolchain (safe to keep even if unused) ====
+# ==== Logs ====
+*.log
+logs/
+
+# ==== Local settings & secrets (DO NOT COMMIT) ====
+.env*
+!.env.example
+mm_settings.json
+quota_tracker.json
+token.pickle
+token.json
+credentials.json
+client_secret*.json
+.oauth/
+
+# ==== App caches / local artifacts ====
+_preview/
+videos.json
+removed.json
+_templates/*.bak-*
+
+# (Optional) If this repo sometimes has Node bits:
 node_modules/
-.cache/
-.tmp/
+.next/
 dist/
 build/
-*.map
-
-# ==== Drafts / temp (optional) ====
-_preview/
-*.bak-*
-*.log
-
-# IMPORTANT: Do NOT ignore your actual site files.
-# Keep all *.html, *.css, *.js, images, sitemap.xml, robots.txt, CNAME,
-# and your {INDEXNOW_KEY}.txt committed.
