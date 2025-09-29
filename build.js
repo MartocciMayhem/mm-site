@@ -13,7 +13,7 @@ const html = `<!doctype html>
     <style>body{font-family:system-ui;padding:2rem}</style>
   </head>
   <body>
-    <h1>mm-site build ✓</h1>
+    <h1>mm-site build OK</h1>
     <p>${new Date().toISOString()}</p>
   </body>
 </html>`;
