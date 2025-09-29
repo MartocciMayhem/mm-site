@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "build": "node build.js",
-    "start": "npx serve dist -l 4321"
+    "start": "npx serve dist -l 4321",
+    "preview:sites": "node ../scripts/serve-mm-sites.mjs",
+    "preview:sites:port": "node ../scripts/serve-mm-sites.mjs 4333"
   },
   "devDependencies": {
     "serve": "^14.2.3"

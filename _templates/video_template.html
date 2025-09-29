@@ -17,7 +17,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="video.other">
 <meta property="og:title" content="{{ title | truncate(55) }}">
-<meta property="og:site_name" content="Martocci Mayhem">
+<meta property="og:site_name" content="{{ site_name }}">
 <meta property="og:description" content="{{ short_desc | truncate(60) }}">
 <meta property="og:url" content="{{ site_url }}/videos/{{ slug }}.html">
 <meta property="og:image" content="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg">
@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="{{ title | truncate(50) }}">
 <meta name="twitter:site" content="@MartocciMayhem">
 <meta name="twitter:description" content="{{ short_desc | truncate(120) }}">
-<meta name="twitter:image:alt" content="Martocci Mayhem {{ title }}">
+<meta name="twitter:image:alt" content="{{ site_name }} {{ title }}">
 <meta name="twitter:image" content="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg">
 
 <style>{% raw %}
@@ -238,9 +238,9 @@
 </head>
 <body>
 <header>
-  <a class="brand" href="{{ site_url }}">
-    <img src="/images/JasonMartocciLogo.webp" width="28" height="28" alt="Logo">
-    <span>Martocci Mayhem</span>
+  <a class="brand" href="{{ brand_link or 'https://martoccimayhem.com' }}">
+    <img src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28" height="28" alt="Logo">
+    <span>{{ site_name }}</span>
   </a>
 </header>
 
@@ -461,7 +461,7 @@
       {% if related and related|length > 0 %}
       <div class="grid">
         {% for r in related %}
-          <a class="rec-card" href="/videos/{{ r.slug }}.html">
+          <a class="rec-card" href="{{ r.slug }}.html">
             <img class="thumb" decoding="async" loading="lazy"
                  src="https://i.ytimg.com/vi/{{ r.video_id }}/hqdefault.jpg"
                  width="320" height="180"

@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Unlock ASMR Magic & Epic Savage Grandma at Martocci Mayhem</title>
-<meta name="description" content="Explore the full Martocci Mayhem catalog: ASMR, comedy, shorts, tech experiments and more.">
+<title>{{ site_name }}</title>
+<meta name="description" content="{{ site_description or 'Explore videos and updates.' }}">
 <meta name="generator" content="Mayhem Maker {{ app_version }} ({{ build_stamp }})">
 <link rel="canonical" href="{{ site_url }}">
 <link rel="icon" href="/images/favicon.ico">
@@ -14,17 +14,17 @@
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Unlock ASMR Magic & Epic Savage Grandma at Martocci Mayhem">
-<meta property="og:site_name" content="Martocci Mayhem">
-<meta property="og:description" content="Explore ASMR, comedy, shorts and tech-heavy experiments.">
+<meta property="og:title" content="{{ site_name }}">
+<meta property="og:site_name" content="{{ site_name }}">
+<meta property="og:description" content="{{ site_description or 'Explore videos and updates.' }}">
 <meta property="og:url" content="{{ site_url }}">
 <meta property="og:image" content="{{ site_url }}/images/JasonMartocciLogo.webp">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Unlock ASMR Magic & Epic Savage Grandma">
+<meta name="twitter:title" content="{{ site_name }}">
 <meta name="twitter:site" content="@MartocciMayhem">
-<meta name="twitter:description" content="Explore ASMR, comedy, shorts and tech-heavy experiments.">
+<meta name="twitter:description" content="{{ site_description or 'Explore videos and updates.' }}">
 <meta name="twitter:image:alt" content="Unlock ASMR Magic & Epic Savage Grandma at Martocci Mayhem">
 <meta name="twitter:image" content="{{ site_url }}/images/JasonMartocciLogo.webp">
 
@@ -193,7 +193,7 @@
 </head>
 <body>
 <header>
-  <a class="brand" href="{{ site_url }}"><img src="/images/JasonMartocciLogo.webp" width="28" height="28" alt="Logo"><span>Martocci Mayhem</span></a>
+  <a class="brand" href="{{ brand_link or 'https://martoccimayhem.com' }}"><img src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28" height="28" alt="Logo"><span>{{ site_name }}</span></a>
   <h1 class="site-title">Slice • Smash • Laugh • Repeat 🔥</h1>
 </header>
 
@@ -375,7 +375,8 @@
 
     function card(v){
         const a = document.createElement("a");
-        a.href = "/videos/" + (v.slug||"") + ".html";
+        // link relative to site root (/slug/videos/...)
+        a.href = "videos/" + (v.slug||"") + ".html";
         a.className="card";
 
         const img = document.createElement("img");
