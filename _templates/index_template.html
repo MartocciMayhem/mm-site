@@ -376,8 +376,9 @@
 
     function card(v){
         const a = document.createElement("a");
-        // link relative to site root (/slug/videos/...)
-        a.href = "videos/" + (v.slug||"") + ".html";
+        // Ensure link works regardless of trailing slash
+        const currentPath = window.location.pathname.replace(/\/?$/, '/');
+        a.href = currentPath + "videos/" + (v.slug||"") + ".html";
         a.className="card";
 
         const img = document.createElement("img");
