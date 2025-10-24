@@ -299,6 +299,90 @@
       }
     }
 
+    /* Language switcher styles */
+    .lang-switcher {
+      position: relative;
+      margin-left: auto;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #3ea6ff;
+    }
+
+    .lang-btn svg {
+      display: block;
+    }
+
+    .lang-panel {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 12px;
+      min-width: 200px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+    }
+
+    .lang-panel__heading {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .lang-panel__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .lang-panel__list li {
+      margin: 0;
+    }
+
+    .lang-option {
+      width: 100%;
+      padding: 8px 12px;
+      background: transparent;
+      border: none;
+      color: #ddd;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .lang-option:hover {
+      background: rgba(62, 166, 255, 0.2);
+      color: #fff;
+    }
+
+    .lang-option.active {
+      background: rgba(62, 166, 255, 0.3);
+      color: #3ea6ff;
+      font-weight: 600;
+    }
+
       {
       % endraw %
     }
@@ -373,14 +457,31 @@
         src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28" height="28" alt="Logo"><span
         data-i18n="hero_title">{{ site_name or 'Your channel' }}</span></a>
     <h1 class="site-title" data-i18n="tagline">Slice • Smash • Laugh • Repeat 🔥</h1>
-    <div class="lang-switcher">
-      <label for="mm-lang-switch">Lang</label>
-      <select id="mm-lang-switch">
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="de">Deutsch</option>
-        <option value="fr">Français</option>
-      </select>
+    <div class="lang-switcher" id="lang-switcher">
+      <button type="button" class="lang-btn" id="lang-btn" aria-label="Choose language" title="Language">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+      </button>
+      <div class="lang-panel" id="lang-panel" style="display: none;">
+        <strong class="lang-panel__heading">Choose language</strong>
+        <ul class="lang-panel__list">
+          <li><button type="button" class="lang-option" data-lang="en">English</button></li>
+          <li><button type="button" class="lang-option" data-lang="es">Español</button></li>
+          <li><button type="button" class="lang-option" data-lang="pt">Português</button></li>
+          <li><button type="button" class="lang-option" data-lang="hi">हिन्दी</button></li>
+          <li><button type="button" class="lang-option" data-lang="ru">Русский</button></li>
+          <li><button type="button" class="lang-option" data-lang="ja">日本語</button></li>
+          <li><button type="button" class="lang-option" data-lang="ko">한국어</button></li>
+          <li><button type="button" class="lang-option" data-lang="de">Deutsch</button></li>
+          <li><button type="button" class="lang-option" data-lang="fr">Français</button></li>
+          <li><button type="button" class="lang-option" data-lang="ar">العربية</button></li>
+          <li><button type="button" class="lang-option" data-lang="id">Indonesia</button></li>
+          <li><button type="button" class="lang-option" data-lang="tr">Türkçe</button></li>
+        </ul>
+      </div>
     </div>
   </header>
 

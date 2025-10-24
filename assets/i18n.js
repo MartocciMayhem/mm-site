@@ -1,7 +1,6 @@
 "use strict";
 (function () {
     const APP_HOST = "https://app.martoccimayhem.com"; // production app origin
-    const selectId = "mm-lang-switch";
     const storageKey = "mm.lang";
     const defaultLang = "en";
     function readCookie(name) {
@@ -47,19 +46,53 @@
 
     fetchDict(current).then(apply);
 
-    const sel = document.getElementById(selectId);
-    if (sel) {
-        sel.value = current;
-        sel.addEventListener('change', e => {
-            const lang = (e.target.value || defaultLang).toLowerCase();
-            localStorage.setItem(storageKey, lang);
-            // also set cross-subdomain cookie if possible
-            try {
-                const domain = window.location.hostname.includes('martoccimayhem.com') ? '.martoccimayhem.com' : undefined;
-                document.cookie = `mm.lang=${lang}; path=/; max-age=31536000${domain ? `; domain=${domain}` : ''}`;
-            } catch { }
-            fetchDict(lang).then(apply);
-            try { document.documentElement.setAttribute('lang', lang); } catch { }
+    // Modern language switcher with globe icon and dropdown
+    const langBtn = document.getElementById('lang-btn');
+    const langPanel = document.getElementById('lang-panel');
+    const langSwitcher = document.getElementById('lang-switcher');
+
+    if (langBtn && langPanel) {
+        // Toggle panel
+        langBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = langPanel.style.display !== 'none';
+            langPanel.style.display = isOpen ? 'none' : 'block';
+        });
+
+        // Close on outside click
+        document.addEventListener('click', function(e) {
+            if (langSwitcher && !langSwitcher.contains(e.target)) {
+                langPanel.style.display = 'none';
+            }
+        });
+
+        // Set current language as active
+        document.querySelectorAll('.lang-option').forEach(btn => {
+            if (btn.getAttribute('data-lang') === current) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Language option click handler
+        document.querySelectorAll('.lang-option').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang') || defaultLang;
+                localStorage.setItem(storageKey, lang);
+                // also set cross-subdomain cookie if possible
+                try {
+                    const domain = window.location.hostname.includes('martoccimayhem.com') ? '.martoccimayhem.com' : undefined;
+                    document.cookie = `mm.lang=${lang}; path=/; max-age=31536000${domain ? `; domain=${domain}` : ''}`;
+                } catch { }
+                fetchDict(lang).then(apply);
+                try { document.documentElement.setAttribute('lang', lang); } catch { }
+
+                // Update active state
+                document.querySelectorAll('.lang-option').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Close panel
+                langPanel.style.display = 'none';
+            });
         });
     }
 })();
