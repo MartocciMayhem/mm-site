@@ -453,13 +453,14 @@
 
 <body>
   <header>
-    <a class="brand" href="/"><img
-        src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28" height="28" alt="Logo"><span
-        data-i18n="hero_title">{{ site_name or 'Your channel' }}</span></a>
+    <a class="brand" href="{{ site_url }}"><img src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28"
+        height="28" alt="{{ site_name or 'Channel logo' }}"><span data-i18n="hero_title">{{ site_name or 'Your channel'
+        }}</span></a>
     <h1 class="site-title" data-i18n="tagline">Slice • Smash • Laugh • Repeat 🔥</h1>
     <div class="lang-switcher" id="lang-switcher">
       <button type="button" class="lang-btn" id="lang-btn" aria-label="Choose language" title="Language">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="2" y1="12" x2="22" y2="12"></line>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
