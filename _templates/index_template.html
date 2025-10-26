@@ -454,9 +454,9 @@
 <body>
   <header>
     <a class="brand" href="{{ site_url }}"><img src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28"
-        height="28" alt="{{ site_name or 'Channel logo' }}"><span data-i18n="hero_title">{{ site_name or 'Your channel'
+        height="28" alt="{{ site_name or 'Channel logo' }}" onerror="this.onerror=null;this.src='/images/JasonMartocciLogo.webp';"><span data-i18n="hero_title">{{ site_name or 'Your channel'
         }}</span></a>
-    <h1 class="site-title" data-i18n="tagline">Slice • Smash • Laugh • Repeat 🔥</h1>
+    <h1 class="site-title" data-i18n="tagline">{{ site_tagline or 'Slice • Smash • Laugh • Repeat 🔥' }}</h1>
     <div class="lang-switcher" id="lang-switcher">
       <button type="button" class="lang-btn" id="lang-btn" aria-label="Choose language" title="Language">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -505,7 +505,7 @@
 
   <footer>
     <div class="footer-inner">
-      <div><span data-i18n="copyright_prefix">©</span> {{ current_year }} Martocci Mayhem</div>
+      <div><span data-i18n="copyright_prefix">©</span> {{ current_year }} <a href="{{ brand_link }}" target="_blank" rel="noopener noreferrer">Martocci Mayhem</a></div>
 
       <style>
         .socials {
@@ -549,7 +549,7 @@
 
       <nav class="socials" aria-label="Social links">
         <!-- X / Twitter -->
-        <a class="social-btn" href="https://x.com/MartocciMayhem" target="_blank" rel="noopener noreferrer"
+        <a class="social-btn" href="{{ socialX }}" target="_blank" rel="noopener noreferrer"
           aria-label="X (Twitter)" title="X (Twitter)">
           <svg viewBox="0 0 1200 1227" aria-hidden="true">
             <path
@@ -558,7 +558,7 @@
         </a>
 
         <!-- TikTok -->
-        <a class="social-btn" href="https://www.tiktok.com/@MartocciMayhem" target="_blank" rel="noopener noreferrer"
+        <a class="social-btn" href="{{ socialTikTok }}" target="_blank" rel="noopener noreferrer"
           aria-label="TikTok" title="TikTok">
           <svg viewBox="0 0 48 48" aria-hidden="true">
             <path
@@ -567,7 +567,7 @@
         </a>
 
         <!-- YouTube -->
-        <a class="social-btn" href="https://www.youtube.com/@MartocciMayhem" target="_blank" rel="noopener noreferrer"
+        <a class="social-btn" href="{{ socialYouTube }}" target="_blank" rel="noopener noreferrer"
           aria-label="YouTube" title="YouTube">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -576,7 +576,7 @@
         </a>
 
         <!-- Instagram -->
-        <a class="social-btn" href="https://www.instagram.com/MartocciMayhem" target="_blank" rel="noopener noreferrer"
+        <a class="social-btn" href="{{ socialInstagram }}" target="_blank" rel="noopener noreferrer"
           aria-label="Instagram" title="Instagram">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -585,7 +585,7 @@
         </a>
 
         <!-- Facebook -->
-        <a class="social-btn" href="https://www.facebook.com/MartocciMayhem" target="_blank" rel="noopener noreferrer"
+        <a class="social-btn" href="{{ socialFacebook }}" target="_blank" rel="noopener noreferrer"
           aria-label="Facebook" title="Facebook">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -594,7 +594,7 @@
         </a>
 
         <!-- LinkedIn -->
-        <a class="social-btn" href="https://www.linkedin.com/in/MartocciMayhem" target="_blank"
+        <a class="social-btn" href="{{ socialLinkedIn }}" target="_blank"
           rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
