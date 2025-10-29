@@ -1,0 +1,15 @@
+{
+  "sites": [
+    {
+      "slug": "martocci-mayhem",
+      "name": "Martocci Mayhem",
+      "url": "/martocci-mayhem/"
+    },
+    {
+      "slug": "mayhem-maker",
+      "name": "Mayhem Maker",
+      "url": "/mayhem-maker/"
+    }
+  ],
+  "updatedAt": "2025-10-29T04:45:19.150Z"
+}
