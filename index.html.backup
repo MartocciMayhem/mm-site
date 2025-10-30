@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Microsites - Martocci Mayhem</title>
-    <meta name="description" content="Browse all customer microsites powered by Martocci Mayhem">
-    <link rel="icon" href="/images/favicon.ico">
-    <link rel="stylesheet" href="/assets/microsite.css">
+    <title>Martocci Mayhem Video Sites</title>
+    <meta name="description" content="Creator microsite hosting powered by GitHub Pages">
     <style>
         * {
             margin: 0;
