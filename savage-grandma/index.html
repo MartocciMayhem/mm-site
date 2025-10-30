@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Look It Up</title>
+  <meta name="description" content="Explore videos and updates.">
+  <meta name="generator" content="Mayhem Maker 0.7.0 (20251030.164416)">
+  <link rel="canonical" href="https://videos.martoccimayhem.com/savage-grandma">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/assets/light.css" media="(prefers-color-scheme: light)">
+
+  <!-- Preconnect / DNS -->
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="dns-prefetch" href="https://i.ytimg.com">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Look It Up">
+  <meta property="og:site_name" content="Look It Up">
+  <meta property="og:description" content="Explore videos and updates.">
+  <meta property="og:url" content="https://videos.martoccimayhem.com/savage-grandma">
+  <meta property="og:image" content="https://videos.martoccimayhem.com/savage-grandmahttps://yt3.ggpht.com/82D-AVVvXY1EPNOI5lGdIFduziRD0yLBirXjPXWGk2AHLlkICZI9ceA0NMeSEH1MhdpoXY0l=s240-c-k-c0x00ffffff-no-rj">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Look It Up">
+  <meta name="twitter:site" content="@MartocciMayhem">
+  <meta name="twitter:description" content="Explore videos and updates.">
+  <meta name="twitter:image:alt" content="Unlock ASMR Magic & Epic Savage Grandma at Look It Up">
+  <meta name="twitter:image" content="https://videos.martoccimayhem.com/savage-grandmahttps://yt3.ggpht.com/82D-AVVvXY1EPNOI5lGdIFduziRD0yLBirXjPXWGk2AHLlkICZI9ceA0NMeSEH1MhdpoXY0l=s240-c-k-c0x00ffffff-no-rj">
+
+  <style>
+    {
+      % raw %
+    }
+
+    :root {
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    img,
+    svg,
+    video,
+    canvas,
+    iframe {
+      display: block;
+    }
+
+    /* ===== Header (logo left, title centered; no overlap on mobile) ===== */
+    header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-bottom: 1px solid #222;
+      background: #0f0f0f;
+    }
+
+    header .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    header .brand img {
+      width: 28px;
+      height: 28px;
+    }
+
+    header .site-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      font-weight: 800;
+      color: #eee;
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header .site-title {
+        position: static;
+        transform: none;
+        width: 100%;
+        text-align: center;
+        margin-top: 2px;
+      }
+    }
+
+    /* ===== Sticky toolbar (only this is sticky) ===== */
+    /* One sticky block that contains two stacked rows */
+    .toolbar-wrap {
+      position: sticky;
+      top: 0;
+      /* if you later make the header sticky, set this to its height */
+      z-index: 20;
+      background: #0f0f0f;
+    }
+
+    /* Rows */
+    .filters-row,
+    .search-row {
+      padding: 10px 12px;
+      background: #0f0f0f;
+    }
+
+    /* Category chips (horizontal scroll) */
+    /* Horizontal scroll filter chips */
+    .filters {
+      display: flex;
+      flex: 1 1 auto;
+      gap: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filters button {
+      background: #161616;
+      border: 1px solid #222;
+      color: #bbb;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+
+    .filters button.active {
+      color: #fff;
+      border-color: #3ea6ff;
+    }
+
+    .search {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid #222;
+      background: #111;
+      color: #ddd;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid #222;
+      background: #111;
+      color: #ddd;
+    }
+
+    /* ===== Full-width content ===== */
+    main {
+      width: 100%;
+      margin: 0;
+      padding: 12px;
+      max-width: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 12px;
+      overflow: hidden;
+      display: block;
+    }
+
+    .thumb {
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .body {
+      padding: 10px 12px;
+    }
+
+    a,
+    .link {
+      color: #3ea6ff;
+      text-decoration: none;
+    }
+
+    .title {
+      font-weight: 800;
+      margin: 8px 0 6px;
+    }
+
+    .cat {
+      color: #9aa;
+      font-size: 1rem;
+    }
+
+    .desc {
+      color: #9aa;
+      margin-top: 6px;
+    }
+
+    .meta {
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+
+    /* ===== Footer with social buttons ===== */
+    footer {
+      padding: 18px 12px;
+      border-top: 1px solid #222;
+      color: #aaa;
+      background: #0f0f0f;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #141414;
+      border: 1px solid #222;
+      transition: transform .15s ease, border-color .15s ease;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-1px);
+      border-color: #3ea6ff;
+    }
+
+    .social-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #cfcfcf;
+    }
+
+    @media (max-width: 560px) {
+      .toolbar {
+        padding: 8px 10px;
+        gap: 8px;
+      }
+
+      .search {
+        flex: 0 0 min(60%, 320px);
+      }
+    }
+
+    /* Language switcher styles */
+    .lang-switcher {
+      position: relative;
+      margin-left: auto;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #3ea6ff;
+    }
+
+    .lang-btn svg {
+      display: block;
+    }
+
+    .lang-panel {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 12px;
+      min-width: 200px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+    }
+
+    .lang-panel__heading {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .lang-panel__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .lang-panel__list li {
+      margin: 0;
+    }
+
+    .lang-option {
+      width: 100%;
+      padding: 8px 12px;
+      background: transparent;
+      border: none;
+      color: #ddd;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .lang-option:hover {
+      background: rgba(62, 166, 255, 0.2);
+      color: #fff;
+    }
+
+    .lang-option.active {
+      background: rgba(62, 166, 255, 0.3);
+      color: #3ea6ff;
+      font-weight: 600;
+    }
+
+      {
+      % endraw %
+    }
+  </style>
+
+  <!-- JSON-LD (built in Python to avoid fragile loops) -->
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/savage-grandma.html","name":"Savage Grandma"},{"@type":"ListItem","position":2,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/top-6-most-savage-grandma-clips-for-you.html","name":"Top 6 MOST Savage Grandma Clips For You!"},{"@type":"ListItem","position":3,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/savage-grandma-s-hilarious-marriage-tips.html","name":"Savage Grandma's Hilarious Marriage Tips"},{"@type":"ListItem","position":4,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/what-not-to-do-in-your-relationships.html","name":"What NOT to Do in Your Relationships!"},{"@type":"ListItem","position":5,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/what-if-caps-were-5000-a-piece-and-pricier-than-gold.html","name":"What If Caps Were $5000 a Piece, and Pricier Than Gold?"},{"@type":"ListItem","position":6,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/is-carnival-cruises-really-this-wild.html","name":"Is Carnival Cruises Really This Wild?"},{"@type":"ListItem","position":7,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/this-grandma-has-no-filter.html","name":"This Grandma Has No Filter!"},{"@type":"ListItem","position":8,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/savage-grandma-s-secret-project-exposed.html","name":"Savage Grandma's Secret Project Exposed!"},{"@type":"ListItem","position":9,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/savage-grandma-s-brutal-burn-i-never-forget-a-face.html","name":"Savage Grandma’s Brutal Burn: “I Never Forget a Face”"},{"@type":"ListItem","position":10,"url":"https://videos.martoccimayhem.com/savage-grandma/videos/comin-at-ya-stress-reduction-enjoying-life.html","name":"Comin' At Ya - Stress Reduction & Enjoying Life!"}]}
+</script>
+
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","@id":"https://videos.martoccimayhem.com/savage-grandma#webpage","url":"https://videos.martoccimayhem.com/savage-grandma","name":"Martocci Mayhem","description":"Explore ASMR, comedy, shorts and tech-heavy experiments.","isPartOf":{"@id":"https://videos.martoccimayhem.com/savage-grandma/#website"},"inLanguage":"en"}
+</script>
+
+  <script id="__data" type="application/json">
+[{"video_id":"dxWW9SeIEMk","slug":"savage-grandma","title":"Savage Grandma","desc":"SUBSCRIBE I NEED FRIENDS!\n \n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣\n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n \nIf you have any questions about this video, please feel free to let me know in the comments.\n \n🔔  SUBSCRIBE \n \n🌐  FOLLOW THE FUN EVERYWHERE\n• Look It Up ► https://www.YouTube.com/@JasonMartocci\n• TikTok   ► https://www.tiktok.com/@JasonMartocci\n• X (Twitter) ► https://twitter.com/JasonMartocci\n• Shorts mirror ► https://www.youtube.com/@SavageGrandmaVlog/shorts","category":"Comedy","view_count":0,"like_count":0,"comment_count":0,"last_edited_date":"2025-10-08T06:38:53Z","tags":["Unfiltered","Bold","Entertaining","Relatable","Authentic","Savage Grandma","Look It Up","Jason Martocci","Savage","Grandma","Comedy","Raw"]},{"video_id":"5ZZkPBkZoCg","slug":"top-6-most-savage-grandma-clips-for-you","title":"Top 6 MOST Savage Grandma Clips For You!","desc":"Savage Grandma shares her thoughts on Carnival Cruise Line, comparing the cruise ships to an episode of \"Survivor\"! 😂 This funny take on cruising and cruise news will have you rethinking your vacation. Get ready for some meme energy! \n \nSUBSCRIBE I NEED FRIENDS!\n \n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣\n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n \nIf you have any questions about this video, please feel free to let me know in the comments.\n \n🔔  SUBSCRIBE \n \n🌐  FOLLOW THE FUN EVERYWHERE\n• Look It Up ► https://www.YouTube.com/@MartocciMayhem\n• TikTok   ► https://www.tiktok.com/@JasonMartocci\n• X (Twitter) ► https://twitter.com/JasonMartocci\n• Shorts mirror ► https://www.youtube.com/@SavageGrandmaVlog/shorts","category":"Comedy","view_count":11,"like_count":3,"comment_count":0,"last_edited_date":"2025-09-02T20:55:18Z","tags":["Unfiltered","Bold","Entertaining","Relatable","Authentic","Savage Grandma","Look It Up","Jason Martocci","Savage","Grandma","Comedy","Raw","cruise ship","cruising","cruise lines","carnival cruise line","grandma humor","vlog","funny podcasts","comedy clips","ai","comedy shorts","savage jokes","laugh out loud","asmr surprises","funny","comedy club","comedy videos","stand up comedy","short comedy","best comedy","satisfying videos","funny clips","funny videos","funny memes","vlogger","jokes","ai video","savage comebacks"]},{"video_id":"V0URdA_1Wgk","slug":"savage-grandma-s-hilarious-marriage-tips","title":"Savage Grandma's Hilarious Marriage Tips","desc":"Savage Grandma is back with a funny take on technology, struggling with a selfie stick! 😂 This viral video is packed with unexpected moments and meme energy. Get ready for some funny grandma videos!\n \nSUBSCRIBE I NEED FRIENDS!\n \n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣\n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n \nIf you have any questions about this video, please feel free to let me know in the comments.\n \n🔔  SUBSCRIBE \n \n🌐  FOLLOW THE FUN EVERYWHERE\n• Look It Up ► https://www.YouTube.com/@MartocciMayhem\n• TikTok   ► https://www.tiktok.com/@JasonMartocci\n• X (Twitter) ► https://twitter.com/JasonMartocci\n• Shorts mirror ► https://www.youtube.com/@SavageGrandmaVlog/shorts","category":"Comedy","view_count":160,"like_count":5,"comment_count":0,"last_edited_date":"2025-09-02T12:50:14Z","tags":["Unfiltered","Bold","Entertaining","Relatable","Authentic","Savage Grandma","Look It Up","Jason Martocci","Savage","Grandma","Comedy","Raw","funny grandma videos","grandma","funny","viral video","ai","stand up comedy","assistant","comedy central","short comedy","funny memes","comedy special","aiasmr","funny podcasts","funny grandma","vlogger","savage comebacks","stand-up comedy","comedy club","comedy shorts","funny videos","entertainment","standup comedy","viral","comedy skits","comedy videos","best comedians","comedian"]},{"video_id":"BjmmGfMk_Eo","slug":"what-not-to-do-in-your-relationships","title":"What NOT to Do in Your Relationships!","desc":"This short is packed with funny stories and classic stand up comedy! 😂 Savage Grandma shares a dating story using bold language and meme energy. Get ready for a laugh with this hilarious take on life and teeth!\n \nSUBSCRIBE I NEED FRIENDS!\n \n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣\n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n \nIf you have any questions about this video, please feel free to let me know in the comments.\n \n🔔  SUBSCRIBE \n \n🌐  FOLLOW THE FUN EVERYWHERE\n• Look It Up ► https://www.YouTube.com/@MartocciMayhem\n• TikTok   ► https://www.tiktok.com/@JasonMartocci\n• X (Twitter) ► https://twitter.com/JasonMartocci\n• Shorts mirror ► https://www.youtube.com/@SavageGrandmaVlog/shorts\n\n\nSavage Grandma is back talking about her dentures and teeth with a humorous take on denture life! 😂 This funny take on oral surgery and being a denture diva will have you laughing. Get your dose of humor!","category":"Comedy","view_count":4,"like_count":2,"comment_count":0,"last_edited_date":"2025-09-02T01:11:55Z","tags":["Unfiltered","Bold","Entertaining","Relatable","Authentic","Savage Grandma","Look It Up","Jason Martocci","Savage","Grandma","Comedy","Raw","stand up comedy","funny stories","dating","vlog squad","ai","coffee talk","parents","comedy club","oddly satisfying video","funny","comedy videos","funny jokes","comedy shorts","laugh","savage comebacks","visual asmr","funny shorts","just for laughs","just laugh","funny videos","try not to laugh","funny video","comedy video","comedy special","you laugh you lose","comedy skits"]},{"video_id":"WOPejeRF6xw","slug":"what-if-caps-were-5000-a-piece-and-pricier-than-gold","title":"What If Caps Were $5000 a Piece, and Pricier Than Gold?","desc":"This viral video brings the laughs with a dose of unexpected wisdom! 😂 Focusing on home defense and self-defense, she presents a unique solution to bad guys in the news: pricey bang bangs. Is the $ 5,000 cap idea trending? 🤔\n \nSUBSCRIBE I NEED FRIENDS!\n \n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣\n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n \nIf you have any questions about this video, please feel free to let me know in the comments.\n \n🔔  SUBSCRIBE \n \n🌐  FOLLOW THE FUN EVERYWHERE\n• Look It Up ► https://www.YouTube.com/@MartocciMayhem\n• TikTok   ► https://www.tiktok.com/@JasonMartocci\n• X (Twitter) ► https://twitter.com/JasonMartocci\n• Shorts mirror ► https://www.youtube.com/@SavageGrandmaVlog/shorts","category":"Comedy","view_count":1763,"like_count":17,"comment_count":4,"last_edited_date":"2025-09-01T05:32:56Z","tags":["Unfiltered","Bold","Entertaining","Relatable","Authentic","Savage Grandma","Look It Up","Jason Martocci","Savage","Grandma","Comedy","Raw","comedy video","comedy club","comedy clips","views","funny","viral shorts","viral grandma","vlog","short comedy","stand up comedy","home","grandma jokes","funny videos","laugh","vlogger","funny shorts","comedian","best comedy","best stand up","funny grandma","marriage","comedy shorts","youtube shorts","coffee talk","stand-up comedy","dont tell comedy","best comedians","standup comedy"]},{"video_id":"ACFQpwUfDtk","slug":"is-carnival-cruises-really-this-wild","title":"Is Carnival Cruises Really This Wild?","desc":"Carnival cruises are hilariously compared to a floating episode of the cops tv show theme song in this short! 😂 This funny take on cruise ship experiences and cruise news will have you rethinking your next vacation. Get your cruise tips and laugh along!\n \nSUBSCRIBE I NEED FRIENDS!\n \n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣\n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n \nIf you have any questions about this video, please feel free to let me know in the comments.\n \n🔔  SUBSCRIBE \n \n🌐  FOLLOW THE FUN EVERYWHERE\n• Look It Up ► https://www.YouTube.com/@MartocciMayhem\n• TikTok   ► https://www.tiktok.com/@JasonMartocci\n• X (Twitter) ► https://twitter.com/JasonMartocci\n• Shorts mirror ► https://www.youtube.com/@SavageGrandmaVlog/shorts","category":"Comedy","view_count":2128,"like_count":12,"comment_count":0,"last_edited_date":"2025-08-30T18:11:45Z","tags":["Unfiltered","Bold","Entertaining","Relatable","Authentic","Savage Grandma","Look It Up","Jason Martocci","Savage","Grandma","Comedy","Raw","cops tv show theme song","cruise news","cruise tips","cruise ship","comedy skits","viral videos","cruise hacks","cruise line news","funny shorts","comedy video","comedy clips","laugh out loud","cruise tips and tricks","cruise news today","cruise ship news","comedy shorts","carnival cruise tips","carnival cruise line","carnival cruise","carnival cruise chaos","cops","ai","rcl"]},{"video_id":"Ve4rvTlsvak","slug":"this-grandma-has-no-filter","title":"This Grandma Has No Filter!","desc":"Savage Grandma's back, bringing the viral energy with her, funny takes on life! This adult humor is blended with surprising resilience, creating a short that’s pure comedy gold. Catch the latest viral trend in grandma style!\n \nSUBSCRIBE I NEED FRIENDS!\n \n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣\n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n \nIf you have any questions about this video, please feel free to let me know in the comments.\n \n🔔  SUBSCRIBE","category":"Shorts","view_count":1978,"like_count":19,"comment_count":0,"last_edited_date":"2025-08-30T08:06:06Z","tags":["Unfiltered","Bold","Entertaining","Relatable","Authentic","CominAtYa","girlfriend","coffee talk","vlog","marriage","comedian","rude","savage grandma","martocci mayhem","jason martocci","grandma jokes","coochie","balls","raunchy","vlogger","youtube shorts","stand up comedy","trending","ai asmr","podcast","funny","funny memes","ai","meme","ai video","memes","shorts","try not to laugh","comedy","funny videos","funny video","vlogs","ai videos","try not to laugh impossible","comedy video","home","stress relief","funny meme","funny moments"]},{"video_id":"8G33c4mvFu4","slug":"savage-grandma-s-secret-project-exposed","title":"Savage Grandma's Secret Project Exposed!","desc":"Savage Grandma’s serving piping-hot Southern shade in this ASMR-fueled Short! 😏 Watch her sling the ultimate backhanded compliment—“Bless your heart, that’s Southern for you’re a hot mess”—while dishing out her signature sass and tingly whispers. Expect laughs, chaos, and that mic-scratching goodness that’ll leave you roasted and relaxed. 🔥 Perfect for fans of savage comedy and ASMR mayhem! Can you handle Grandma’s tea? Subscribe to Look It Up ASMR and hit the bell to join the Savage Squad—new vids every week! 🔔\n \nSUBSCRIBE I NEED FRIENDS!\n \n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣\n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n \nIf you have any questions about this video, please feel free to let me know in the comments.\n \n🔔  SUBSCRIBE","category":"ASMR","view_count":1803,"like_count":28,"comment_count":0,"last_edited_date":"2025-08-28T18:25:09Z","tags":["Unfiltered","Bold","Entertaining","Relatable","Authentic","CominAtYa","Savage Grandma","ASMR comedy","Southern humor","funny one-liner","viral comedy short","bless your heart","Look It Up ASMR","funny grandma video","ASMR roleplay","comedy skit","YouTube Shorts","Jason Martocci","Look It Up","comedy video","ai","asmr","never before seen","funny memes","ai videos","girlfriend","engaged","trending","comedy shorts","youtube shorts videos","hot mess","jokes","laugh","celebrity","ai video","comedy","humor","savage","grandma"]},{"video_id":"NYANIk-gdpw","slug":"savage-grandma-s-brutal-burn-i-never-forget-a-face","title":"Savage Grandma’s Brutal Burn: “I Never Forget a Face”","desc":"Savage Grandma’s back with a zinger that’ll leave you roasted and relaxed! 😜 Watch her deliver the ultimate clapback—“I never forget a face, but in your case, I’ll make an exception”—in her signature no-filter style, layered with soothing ASMR vibes. This short’s got sass, laughs, and that tingly mic-scratching goodness you crave. Perfect for fans of savage comedy and ASMR chaos! 💥 Will you survive Grandma’s shade? Subscribe to Look It Up ASMR and hit the bell to join the Savage Squad—new vids drop weekly! 🔔\n \nSUBSCRIBE I NEED FRIENDS!\n \n╔═╦╗╔╦╗╔═╦═╦╦╦╦╗╔═╗\n║╚╣║║║╚╣╚╣╔╣╔╣║╚╣═╣\n╠╗║╚╝║║╠╗║╚╣║║║║║═╣\n╚═╩══╩═╩═╩═╩╝╚╩═╩═╝\n \nIf you have any questions about this video, please feel free to let me know in the comments.\n \n🔔  SUBSCRIBE\nThis short clip features a hilarious interaction with a funny grandma! Her witty comeback is pure comedy. Watch this reel for a quick dose of humor and classic meme energy.","category":"Shorts","view_count":1859,"like_count":24,"comment_count":0,"last_edited_date":"2025-08-28T16:35:15Z","tags":["Unfiltered","Bold","Entertaining","Relatable","Authentic","Savage Grandma","ASMR comedy","funny one-liner","viral comedy short","savage clapback","Look It Up ASMR","funny grandma video","ASMR roleplay","comedy skit","YouTube Shorts","coffee talk","trending","home","shorts","vlog","girlfriend","sister","trending shorts","vlog squad","funny shorts","vlogs","funny","vlogger","ai","happy","funny podcasts","comedy shorts","ai videos","funny memes","marriage","relatable tiktoks","funny videos","comedy","tiktok","comedy video"]},{"video_id":"0Pslx-EQvdE","slug":"comin-at-ya-stress-reduction-enjoying-life","title":"Comin' At Ya - Stress Reduction & Enjoying Life!","desc":"Join me for a lifestyle-focused live stream where I explore stress reduction and the joy of living well, reminding everyone that we’re all in this together! Hosted for both men and women, this is a space where you can relax, learn, and connect. Featuring guest interviews as we grow (still learning and just starting out!), tune in for real talk and good vibes. Don’t forget to subscribe to stay updated on future streams!","category":"People & Blogs","view_count":0,"like_count":0,"comment_count":0,"last_edited_date":"2025-07-01T05:29:27Z","tags":["lifestyle","stress reduction","enjoying life","wellness","self-care","mental health","motivation","inspiration","community","30plus","men","women","live stream","interviews","subscribe"]}]
+</script>
+
+  <!-- Organization + WebSite -->
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://videos.martoccimayhem.com/savage-grandma/#org","name":"Look It Up","url":"https://videos.martoccimayhem.com/savage-grandma","logo":{"@type":"ImageObject","url":"https://yt3.ggpht.com/82D-AVVvXY1EPNOI5lGdIFduziRD0yLBirXjPXWGk2AHLlkICZI9ceA0NMeSEH1MhdpoXY0l=s240-c-k-c0x00ffffff-no-rj"},"sameAs":["https://x.com/MartocciMayhem","https://www.tiktok.com/@martoccimayhem","https://www.youtube.com/@MartocciMayhem","https://www.instagram.com/martoccimayhem","https://www.facebook.com/MartocciMayhem"]},{"@type":"WebSite","@id":"https://videos.martoccimayhem.com/savage-grandma/#website","url":"https://videos.martoccimayhem.com/savage-grandma","name":"Look It Up","publisher":{"@id":"https://videos.martoccimayhem.com/savage-grandma/#org"},"inLanguage":"en"}]}
+</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied'
+    });
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M23LKR14B1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-M23LKR14B1');
+  </script>
+</head>
+
+<body>
+  <header>
+    <a class="brand" href="https://videos.martoccimayhem.com/savage-grandma"><img src="https://yt3.ggpht.com/82D-AVVvXY1EPNOI5lGdIFduziRD0yLBirXjPXWGk2AHLlkICZI9ceA0NMeSEH1MhdpoXY0l=s240-c-k-c0x00ffffff-no-rj" width="28"
+        height="28" alt="{{ site_name or 'Channel logo' }}" onerror="this.onerror=null;this.src='https://yt3.ggpht.com/82D-AVVvXY1EPNOI5lGdIFduziRD0yLBirXjPXWGk2AHLlkICZI9ceA0NMeSEH1MhdpoXY0l=s240-c-k-c0x00ffffff-no-rj';"><span data-i18n="hero_title">Look It Up</span></a>
+    <h1 class="site-title" data-i18n="tagline">{{ site_tagline or 'Slice • Smash • Laugh • Repeat 🔥' }}</h1>
+    <div class="lang-switcher" id="lang-switcher">
+      <button type="button" class="lang-btn" id="lang-btn" aria-label="Choose language" title="Language">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+      </button>
+      <div class="lang-panel" id="lang-panel" style="display: none;">
+        <strong class="lang-panel__heading">Choose language</strong>
+        <ul class="lang-panel__list">
+          <li><button type="button" class="lang-option" data-lang="en">English</button></li>
+          <li><button type="button" class="lang-option" data-lang="es">Español</button></li>
+          <li><button type="button" class="lang-option" data-lang="pt">Português</button></li>
+          <li><button type="button" class="lang-option" data-lang="hi">हिन्दी</button></li>
+          <li><button type="button" class="lang-option" data-lang="ru">Русский</button></li>
+          <li><button type="button" class="lang-option" data-lang="ja">日本語</button></li>
+          <li><button type="button" class="lang-option" data-lang="ko">한국어</button></li>
+          <li><button type="button" class="lang-option" data-lang="de">Deutsch</button></li>
+          <li><button type="button" class="lang-option" data-lang="fr">Français</button></li>
+          <li><button type="button" class="lang-option" data-lang="ar">العربية</button></li>
+          <li><button type="button" class="lang-option" data-lang="id">Indonesia</button></li>
+          <li><button type="button" class="lang-option" data-lang="tr">Türkçe</button></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="toolbar-wrap">
+      <div class="filters-row">
+        <div class="filters" id="filters"></div>
+      </div>
+      <div class="search-row">
+        <input id="q" class="search" type="search" placeholder="Search titles, descriptions, tags…"
+          data-i18n="search_placeholder">
+      </div>
+    </div>
+    <!-- SINGLE grid -->
+    <div class="grid" id="grid"></div>
+
+    <!-- Sentinel should immediately follow the grid it drives -->
+    <div id="sentinel" aria-hidden="true"></div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><span data-i18n="copyright_prefix">©</span> 2025 <a href="{{ brand_link }}" target="_blank" rel="noopener noreferrer">Look It Up</a></div>
+
+      <style>
+        .socials {
+          display: flex;
+          align-items: center;
+          gap: .6rem;
+          flex-wrap: wrap
+        }
+
+        .social-btn {
+          width: 40px;
+          height: 40px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, .25);
+          color: #fff;
+          background: transparent;
+          text-decoration: none;
+          transition: transform .12s ease, background .12s ease
+        }
+
+        .social-btn svg {
+          width: 20px;
+          height: 20px;
+          display: block;
+          fill: currentColor
+        }
+
+        .social-btn:hover {
+          background: rgba(255, 255, 255, .1);
+          transform: translateY(-1px)
+        }
+
+        .social-btn:focus-visible {
+          outline: 2px solid currentColor;
+          outline-offset: 2px
+        }
+      </style>
+
+      <nav class="socials" aria-label="Social links">
+        <!-- X / Twitter -->
+        <a class="social-btn" href="{{ socialX }}" target="_blank" rel="noopener noreferrer"
+          aria-label="X (Twitter)" title="X (Twitter)">
+          <svg viewBox="0 0 1200 1227" aria-hidden="true">
+            <path
+              d="M714 519 1160 0H1064L663 464 357 0H0l463 681L0 1227h96l424-483 330 483h357L714 519ZM556 676l-49-70-389-553h167l314 445 49 70 401 569h-167L556 676Z" />
+          </svg>
+        </a>
+
+        <!-- TikTok -->
+        <a class="social-btn" href="{{ socialTikTok }}" target="_blank" rel="noopener noreferrer"
+          aria-label="TikTok" title="TikTok">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path
+              d="M41,18.6c-3.4,0-6.6-1.1-9.2-3.1v12.4c0,7.8-6.3,14.1-14.1,14.1S3.5,35.7,3.5,27.9c0-6.3,4.1-11.6,9.8-13.4v6.3 c-2.1,1.3-3.5,3.7-3.5,6.4c0,4.1,3.4,7.5,7.5,7.5s7.5-3.4,7.5-7.5V6.5h6.4c0.6,3.6,3.4,6.6,7,7.5V18.6z" />
+          </svg>
+        </a>
+
+        <!-- YouTube -->
+        <a class="social-btn" href="{{ socialYouTube }}" target="_blank" rel="noopener noreferrer"
+          aria-label="YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M23.498 6.186a2.974 2.974 0 0 0-2.093-2.103C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.405.583a2.974 2.974 0 0 0-2.093 2.103C0 8.095 0 12 0 12s0 3.905.502 5.814a2.974 2.974 0 0 0 2.093 2.103C4.495 20.5 12 20.5 12 20.5s7.505 0 9.405-.583a2.974 2.974 0 0 0 2.093-2.103C24 15.905 24 12 24 12s0-3.905-.502-5.814ZM9.75 15.5v-7l6.5 3.5-6.5 3.5Z" />
+          </svg>
+        </a>
+
+        <!-- Instagram -->
+        <a class="social-btn" href="{{ socialInstagram }}" target="_blank" rel="noopener noreferrer"
+          aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6.25-.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z" />
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a class="social-btn" href="{{ socialFacebook }}" target="_blank" rel="noopener noreferrer"
+          aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12" />
+          </svg>
+        </a>
+
+        <!-- LinkedIn -->
+        <a class="social-btn" href="{{ socialLinkedIn }}" target="_blank"
+          rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.5 8.98h2.96V21H3.5zM9 8.98h2.84v1.63h.04c.4-.75 1.38-1.54 2.84-1.54 3.03 0 3.59 1.99 3.59 4.57V21h-2.96v-4.92c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.58V21H9z" />
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    "use strict";
+    (function () {
+      function debounce(fn, ms) { let t; return function () { const a = arguments; clearTimeout(t); t = setTimeout(() => fn.apply(null, a), ms || 250); }; }
+      function compactMeta(views, likes, comments) {
+        const v = "Views:" + " " + Number(views || 0).toLocaleString();
+        const l = "Likes:" + " " + Number(likes || 0).toLocaleString();
+        const full = v + " · " + l;
+        return (full.length > 42) ? (v + " · " + l) : full;
+      }
+
+      const RAW = document.getElementById("__data");
+      let ALL = [];
+      try { ALL = JSON.parse((RAW && RAW.textContent) || "[]"); } catch (e) { console.error("Bad data JSON", e); }
+
+      const DATA = ALL.map(v => ({ ...v, _t: (v.title || "").toLowerCase(), _d: (v.desc || "").toLowerCase(), _tags: (v.tags || []).map(t => String(t).toLowerCase()) }));
+      const cats = ["All", ...Array.from(new Set(DATA.map(v => v.category || "People & Blogs"))).sort((a, b) => a.localeCompare(b))];
+
+      const filters = document.getElementById("filters");
+      const grid = document.getElementById("grid");
+      const qEl = document.getElementById("q");
+      const sentinel = document.getElementById("sentinel");
+
+      if (!filters || !grid || !qEl || !sentinel) { console.warn("Missing required elements"); return; }
+
+      let currentCat = "All", query = "", filtered = [], pageSize = 30, cursor = 0, observer = null;
+
+      cats.forEach(c => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = c;
+        b.addEventListener("click", () => { currentCat = c; applyFilters(); });
+        if (c === currentCat) b.classList.add("active");
+        filters.appendChild(b);
+      });
+
+      qEl.addEventListener("input", debounce(e => {
+        query = (e.target.value || "").toLowerCase().trim();
+        applyFilters();
+      }, 200));
+
+      function matchesQuery(v, q) {
+        if (!q) return true;
+        const parts = q.split(/\s+/);
+        return parts.every(tok => {
+          if (tok.startsWith("tag:")) return v._tags.some(x => x.includes(tok.slice(4)));
+          if (tok.startsWith("id:")) return String(v.video_id || "").toLowerCase().includes(tok.slice(3));
+          return v._t.includes(tok) || v._d.includes(tok) || v._tags.some(x => x.includes(tok));
+        });
+      }
+
+      function applyFilters() {
+        Array.prototype.forEach.call(filters.children, b => b.classList.toggle("active", b.textContent === currentCat));
+        filtered = DATA
+          .filter(v => (currentCat === "All" || v.category === currentCat) && matchesQuery(v, query))
+          .sort((a, b) => String(b.last_edited_date || "").localeCompare(String(a.last_edited_date || ""))); // ok if ISO dates
+
+        grid.textContent = "";
+        cursor = 0;
+        if (observer) observer.disconnect();
+        loadMore();
+        observer = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) loadMore(); }, { rootMargin: "1200px" });
+        if (sentinel) observer.observe(sentinel);
+      }
+
+      function loadMore() {
+        if (cursor >= filtered.length) return;
+        const end = Math.min(cursor + pageSize, filtered.length);
+        const frag = document.createDocumentFragment();
+        for (let i = cursor; i < end; i++) frag.appendChild(card(filtered[i]));
+        grid.appendChild(frag);
+        cursor = end;
+      }
+
+      function card(v) {
+        const a = document.createElement("a");
+        // Ensure link works regardless of trailing slash
+        const currentPath = window.location.pathname.replace(/\/?$/, '/');
+        a.href = currentPath + "videos/" + (v.slug || "") + ".html";
+        a.className = "card";
+
+        const img = document.createElement("img");
+        img.className = "thumb";
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.width = 320; img.height = 180;
+        img.src = "https://i.ytimg.com/vi/" + v.video_id + "/hqdefault.jpg";
+        img.alt = v.title || "";
+        img.onerror = function () { this.onerror = null; this.src = '/images/default-thumbnail.png'; };
+
+        const body = document.createElement("div"); body.className = "body";
+        const t = document.createElement("div"); t.className = "title"; t.textContent = v.title || "";
+        const cat = document.createElement("div"); cat.className = "cat"; cat.textContent = String(v.category || "");
+        const desc = document.createElement("div"); desc.className = "desc"; const raw = (v.desc || ""); desc.textContent = raw.length > 90 ? (raw.slice(0, 90) + "…") : raw;
+        const meta = document.createElement("div"); meta.className = "meta"; meta.textContent = compactMeta(v.view_count, v.like_count, v.comment_count);
+
+        body.appendChild(t); body.appendChild(cat); body.appendChild(desc); body.appendChild(meta);
+        a.appendChild(img); a.appendChild(body);
+        return a;
+      }
+
+      applyFilters();
+    })();
+  </script>
+  <script src="/assets/i18n.js" defer></script>
+  <!-- generated by Mayhem Maker v0.7.0 @ 20251030.164416Z -->
+</body>
+
+</html>

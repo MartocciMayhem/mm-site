@@ -1,0 +1,39 @@
+/* Light theme overrides for site pages (index + video) */
+:root { color-scheme: light; }
+body { background: #f8fafc !important; color: #0f172a !important; }
+header, footer { background: #f8fafc !important; color: #0f172a !important; }
+header .site-title { color: #111827 !important; }
+
+/* Cards & borders */
+.card { background: #ffffff !important; border: 1px solid #e5e7eb !important; }
+.rec-card { background: #ffffff !important; border: 1px solid #e5e7eb !important; }
+.grid .card, .grid .rec-card { box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+
+/* Links */
+a, .link { color: #ff8c3e !important; }
+a:hover, .link:hover { color: #ff7a1f !important; }
+
+/* Inputs */
+.search, .search input, input, select, textarea { background: #ffffff !important; color: #111827 !important; border: 1px solid #e5e7eb !important; }
+
+/* Filters (chips) */
+.filters button { background: #f3f4f6 !important; border-color: #e5e7eb !important; color: #374151 !important; }
+.filters button.active { color: #111827 !important; border-color: #ff8c3e !important; }
+
+/* Thumbs container */
+.thumb, .video { border-color: #e5e7eb !important; box-shadow: 0 0 0 1px #f3f4f6 inset, 0 10px 25px rgba(0,0,0,.06) !important; }
+
+/* Meta text */
+.cat, .desc, .meta, .mini, .mini-meta, .subtle { color: #4b5563 !important; }
+
+/* Language switcher container */
+.lang-switcher { margin-left:auto; display:flex; align-items:center; gap:6px; }
+.lang-switcher label { font-size:12px; color:#666 !important; }
+.lang-switcher select { background:#ffffff !important; color:#111827 !important; border:1px solid #e5e7eb !important; padding:4px 6px; border-radius:6px; }
+
+/* Dark mode fallback for non-light scheme pages */
+@media (prefers-color-scheme: dark) {
+	.lang-switcher label { color:#bbb !important; }
+	.lang-switcher select { background:#111 !important; color:#eee !important; border-color:#222 !important; }
+}
+
