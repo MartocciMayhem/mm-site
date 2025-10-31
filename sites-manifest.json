@@ -1,20 +1,10 @@
 {
   "sites": [
     {
-      "slug": "martocci-mayhem",
-      "name": "Martocci Mayhem",
-      "url": "/martocci-mayhem/"
-    },
-    {
       "slug": "mayhem-maker",
       "name": "Mayhem Maker",
       "url": "/mayhem-maker/"
-    },
-    {
-      "slug": "savage-grandma",
-      "name": "Savage Grandma",
-      "url": "/savage-grandma/"
     }
   ],
-  "updatedAt": "2025-10-30T22:44:38.694Z"
+  "updatedAt": "2025-10-31T03:26:09.697Z"
 }
