@@ -40,6 +40,30 @@
 
     :root {
       color-scheme: dark;
+
+      /* Design System Tokens - Match Main Site & Index */
+      --mm-bg: radial-gradient(circle at 20% -20%, rgba(56, 189, 248, 0.16), transparent 55%),
+        radial-gradient(circle at 82% 0%, rgba(129, 140, 248, 0.18), transparent 62%),
+        #05060c;
+      --mm-surface: rgba(12, 16, 30, 0.82);
+      --mm-surface-border: rgba(148, 163, 184, 0.22);
+      --mm-surface-glow: rgba(59, 130, 246, 0.28);
+      --mm-text-primary: #f8fafc;
+      --mm-text-muted: #94a3b8;
+      --mm-accent: #fbbf24;
+      --mm-accent-hover: #fcd34d;
+
+      --mm-radius-sm: 6px;
+      --mm-radius-md: 12px;
+      --mm-radius-lg: 16px;
+
+      --mm-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --mm-shadow-md: 0 8px 16px rgba(0, 0, 0, 0.2);
+      --mm-shadow-lg: 0 24px 44px rgba(2, 6, 23, 0.35);
+
+      --mm-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --mm-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      --mm-transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * {
@@ -54,8 +78,8 @@
     body {
       margin: 0;
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      background: #0f0f0f;
-      color: #fff;
+      background: var(--mm-bg);
+      color: var(--mm-text-primary);
       -webkit-text-size-adjust: 100%;
     }
 
@@ -67,30 +91,39 @@
       display: block;
     }
 
-    /* Header: logo left, H1 centered (no overlap on mobile) */
+    /* ===== Header ===== */
     header {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-bottom: 1px solid #222;
-      background: #0f0f0f;
+      gap: 12px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--mm-surface-border);
+      background: rgba(5, 6, 12, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     header .brand {
       display: flex;
       align-items: center;
-      gap: 8px;
-      color: #fff;
+      gap: 10px;
+      color: var(--mm-text-primary);
       text-decoration: none;
       font-weight: 700;
       z-index: 2;
+      transition: transform var(--mm-transition-fast);
+    }
+
+    header .brand:hover {
+      transform: scale(1.02);
     }
 
     header .brand img {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--mm-surface-glow);
     }
 
     header .page-title {
@@ -99,33 +132,39 @@
       transform: translateX(-50%);
       margin: 0;
       font-weight: 800;
-      color: #eee;
-      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      color: var(--mm-text-primary);
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
       line-height: 1.2;
       text-align: center;
+      max-width: 60%;
     }
 
-    @media (max-width:560px) {
+    @media (max-width: 560px) {
       header {
         flex-direction: column;
         align-items: flex-start;
+        padding: 12px 16px;
       }
 
       header .page-title {
         position: static;
         transform: none;
         width: 100%;
+        max-width: 100%;
         text-align: center;
-        margin-top: 2px;
+        margin-top: 4px;
       }
     }
 
-    /* Full-width content */
+    }
+    }
+
+    /* ===== Main content ===== */
     main {
       width: 100%;
-      margin: 0;
-      padding: clamp(12px, 2vw, 24px);
-      max-width: none;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: clamp(16px, 2vw, 32px);
       display: grid;
       grid-template-columns: minmax(0, 2.6fr) minmax(280px, 1fr);
       gap: clamp(14px, 2vw, 28px);
@@ -137,17 +176,17 @@
       }
     }
 
-    /* Video wrapper reserves height to prevent CLS */
+    /* Video wrapper */
     .video {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
       overflow: hidden;
-      border-radius: 10px;
-      border: 1px solid #222;
-      box-shadow: 0 0 0 1px #111 inset, 0 10px 25px rgba(0, 0, 0, .35);
-      margin-bottom: 1rem;
-      /* add this line */
+      border-radius: var(--mm-radius-md);
+      border: 1px solid var(--mm-surface-border);
+      background: var(--mm-surface);
+      box-shadow: var(--mm-shadow-lg), 0 0 0 1px var(--mm-surface-glow);
+      margin-bottom: 1.5rem;
     }
 
     .video iframe {
@@ -173,37 +212,45 @@
     }
 
     .card {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 12px;
-      padding: clamp(12px, 1.6vw, 18px);
+      background: var(--mm-surface);
+      border: 1px solid var(--mm-surface-border);
+      border-radius: var(--mm-radius-md);
+      padding: clamp(16px, 1.8vw, 24px);
+      box-shadow: var(--mm-shadow-sm);
     }
 
     section .card+.card {
-      margin-top: 16px;
+      margin-top: clamp(14px, 1.8vw, 20px);
     }
 
     .meta a {
-      color: #bbb;
+      color: rgba(255, 255, 255, 0.7);
       margin-right: 14px;
       text-decoration: none;
-      border-bottom: 1px dotted #444;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+      transition: var(--mm-transition);
     }
 
     .meta a:hover {
-      color: #fff;
-      border-color: #3ea6ff;
+      color: var(--mm-accent);
+      border-color: var(--mm-accent);
     }
 
     a,
     .link {
-      color: #3ea6ff;
+      color: var(--mm-accent);
       text-decoration: none;
+      transition: var(--mm-transition);
+    }
+
+    a:hover,
+    .link:hover {
+      color: rgba(251, 191, 36, 0.8);
     }
 
     .desc {
-      color: #ddd;
-      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.7;
       white-space: pre-wrap;
       overflow-wrap: break-word;
       word-break: normal;
@@ -218,48 +265,63 @@
     .desc pre.ascii {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       white-space: pre;
-      /* never wrap */
       overflow: auto;
       max-width: 100%;
-      background: #0c0c0c;
-      border: 1px solid #222;
-      border-radius: 8px;
-      padding: 8px 10px;
-      margin: 8px 0;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--mm-surface-border);
+      border-radius: var(--mm-radius);
+      padding: 12px;
+      margin: 12px 0;
+      backdrop-filter: blur(8px);
     }
 
     details summary {
       cursor: pointer;
+      user-select: none;
     }
 
     .block-title {
-      font-weight: 800;
-      margin: .2rem 0 .6rem;
+      font-weight: 700;
+      margin: 0.2rem 0 0.8rem;
+      color: rgba(255, 255, 255, 0.95);
     }
 
     .subtle {
-      color: #9aa;
+      color: rgba(255, 255, 255, 0.6);
     }
 
     /* Recommended uses the same grid card layout as index */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 12px;
+      gap: clamp(12px, 1.5vw, 18px);
     }
 
     .rec-card {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 12px;
+      background: var(--mm-surface);
+      border: 1px solid var(--mm-surface-border);
+      border-radius: var(--mm-radius-md);
       overflow: hidden;
       display: block;
+      transition: var(--mm-transition);
+      box-shadow: var(--mm-shadow-sm);
+    }
+
+    .rec-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--mm-shadow-md), 0 0 0 1px var(--mm-surface-glow);
+      border-color: var(--mm-accent);
     }
 
     .thumb {
       aspect-ratio: 16/9;
       object-fit: cover;
       display: block;
+      transition: var(--mm-transition);
+    }
+
+    .rec-card:hover .thumb {
+      opacity: 0.9;
     }
 
     @media (min-width:550px) {
@@ -269,53 +331,64 @@
     }
 
     .body {
-      padding: 10px 12px;
+      padding: 14px 16px;
     }
 
     .title {
-      font-weight: 800;
-      margin-bottom: 6px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.95);
     }
 
     .mini {
-      color: #9aa;
-      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.95rem;
     }
 
     .mini-meta {
       margin-top: 6px;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.5);
     }
 
     footer {
-      padding: 16px;
+      padding: clamp(20px, 2.5vw, 32px);
       text-align: center;
-      border-top: 1px solid #222;
-      color: #aaa
+      border-top: 1px solid var(--mm-surface-border);
+      color: rgba(255, 255, 255, 0.6);
+      background: var(--mm-surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     /* Language switcher styles */
     .lang-switcher {
       position: relative;
       margin-left: auto;
+      z-index: 1000;
     }
 
     .lang-btn {
-      background: transparent;
-      border: 1px solid #333;
-      color: #fff;
-      padding: 8px;
-      border-radius: 6px;
+      background: var(--mm-surface);
+      border: 1px solid var(--mm-surface-border);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 10px 14px;
+      border-radius: var(--mm-radius);
       cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--mm-transition);
+      box-shadow: var(--mm-shadow-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.2s, border-color 0.2s;
+      gap: 6px;
     }
 
     .lang-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: #3ea6ff;
+      background: rgba(251, 191, 36, 0.1);
+      border-color: var(--mm-accent);
+      box-shadow: var(--mm-shadow-md), 0 0 0 1px var(--mm-surface-glow);
     }
 
     .lang-btn svg {
@@ -326,27 +399,30 @@
       position: absolute;
       right: 0;
       top: calc(100% + 8px);
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 12px;
-      min-width: 200px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      z-index: 100;
+      background: var(--mm-surface);
+      border: 1px solid var(--mm-surface-border);
+      border-radius: var(--mm-radius-md);
+      padding: 16px;
+      min-width: 220px;
+      box-shadow: var(--mm-shadow-lg), 0 0 0 1px var(--mm-surface-glow);
+      z-index: 1001;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .lang-panel__heading {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       font-size: 0.9rem;
-      color: #aaa;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
     }
 
     .lang-panel__list {
       list-style: none;
       padding: 0;
       margin: 0;
-      max-height: 300px;
+      max-height: 320px;
       overflow-y: auto;
     }
 
@@ -356,30 +432,26 @@
 
     .lang-option {
       width: 100%;
-      padding: 8px 12px;
+      padding: 10px 14px;
       background: transparent;
       border: none;
-      color: #ddd;
+      color: rgba(255, 255, 255, 0.85);
       text-align: left;
       cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.2s;
+      border-radius: var(--mm-radius);
+      transition: var(--mm-transition);
       font-size: 0.95rem;
     }
 
     .lang-option:hover {
-      background: rgba(62, 166, 255, 0.2);
-      color: #fff;
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--mm-accent);
     }
 
     .lang-option.active {
-      background: rgba(62, 166, 255, 0.3);
-      color: #3ea6ff;
+      background: rgba(251, 191, 36, 0.2);
+      color: var(--mm-accent);
       font-weight: 600;
-    }
-
-      {
-      % endraw %
     }
   </style>
 
@@ -398,11 +470,11 @@
         "url": site_url + "/images/JasonMartocciLogo.webp"
       },
       "sameAs":[
-        "https://x.com/MartocciMayhem",
-        "https://www.tiktok.com/@MartocciMayhem",
-        "https://www.youtube.com/@MartocciMayhem",
-        "https://www.instagram.com/MartocciMayhem",
-        "https://www.facebook.com/MartocciMayhem"
+        socialX or "https://x.com/MartocciMayhem",
+        socialTikTok or "https://www.tiktok.com/@MartocciMayhem",
+        socialYouTube or "https://www.youtube.com/@MartocciMayhem",
+        socialInstagram or "https://www.instagram.com/MartocciMayhem",
+        socialFacebook or "https://www.facebook.com/MartocciMayhem"
       ]
     },
     {
@@ -532,8 +604,11 @@
           <span>
             <span data-i18n="channel_label">Channel:</span>
             <a href="https://www.youtube.com/@{{ channel_handle }}" target="_blank" rel="noopener">
-              {{ channel_title or ("@" ~ channel_handle) }}
-            </a>Subscribers: {{ subs_known and subscriber_count or "—" }}
+              {{ channel_title or channel_handle }}
+            </a>
+          </span>
+          <span>
+            <span data-i18n="subscribers_label">Subscribers:</span> {{ subs_known and subscriber_count or "—" }}
           </span>
         </div>
 

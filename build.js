@@ -171,7 +171,7 @@ async function main() {
   const config = await readJson(CONFIG_PATH, {});
   const data = await readJson(DATA_PATH, []);
   if (!Array.isArray(data) || data.length === 0) {
-    throw new Error("videos.json is empty – cannot build microsite");
+    throw new Error("videos.json is empty ï¿½ cannot build microsite");
   }
 
   const buildStamp = new Date().toISOString();
@@ -207,6 +207,14 @@ async function main() {
   }
 
   const meta = { siteName, siteDescription, siteLogoUrl, siteUrl, siteEnabled };
+
+  // Social media links with fallbacks
+  const socialX = config.socialX || "https://x.com/MartocciMayhem";
+  const socialTikTok = config.socialTikTok || "https://www.tiktok.com/@MartocciMayhem";
+  const socialYouTube = config.socialYouTube || `https://www.youtube.com/@${channel.handle.replace('@', '')}`;
+  const socialInstagram = config.socialInstagram || "https://www.instagram.com/MartocciMayhem";
+  const socialFacebook = config.socialFacebook || "https://www.facebook.com/MartocciMayhem";
+  const socialLinkedIn = config.socialLinkedIn || "https://www.linkedin.com/company/MartocciMayhem";
 
   if (!siteEnabled) {
     await renderDisabledSite(meta, buildStamp, DIST_ROOT);
@@ -257,6 +265,12 @@ async function main() {
     videos,
     item_list_schema: itemListSchema,
     web_page_schema: webPageSchema,
+    socialX,
+    socialTikTok,
+    socialYouTube,
+    socialInstagram,
+    socialFacebook,
+    socialLinkedIn,
   });
 
   await fs.writeFile(path.join(DIST_ROOT, "index.html"), indexHtml, "utf8");
@@ -298,6 +312,12 @@ async function main() {
       video_schema: buildVideoSchema(video, meta, channel),
       faq_schema: buildFaqSchema(),
       related,
+      socialX,
+      socialTikTok,
+      socialYouTube,
+      socialInstagram,
+      socialFacebook,
+      socialLinkedIn,
     });
 
     await fs.writeFile(path.join(videosDir, `${video.slug}.html`), html, "utf8");
