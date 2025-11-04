@@ -647,7 +647,7 @@
       qEl.addEventListener("input", debounce(e => {
         query = (e.target.value || "").toLowerCase().trim();
         applyFilters();
-      }, 200));
+      }, 150));
 
       function matchesQuery(v, q) {
         if (!q) return true;
@@ -684,34 +684,93 @@
 
       function card(v) {
         const a = document.createElement("a");
-        // Ensure link works regardless of trailing slash or index.html
-        const currentPath = window.location.pathname
-          .replace(/\/index\.html$/, '')  // Remove /index.html if present
-          .replace(/\/?$/, '/');           // Ensure trailing slash
-        a.href = currentPath + "videos/" + (v.slug || "") + ".html";
+        a.href = "./videos/" + (v.slug || "") + ".html";
         a.className = "card";
 
-        const img = document.createElement("img");
-        img.className = "thumb";
-        img.loading = "lazy";
-        img.decoding = "async";
-        img.width = 320; img.height = 180;
-        img.src = "https://i.ytimg.com/vi/" + v.video_id + "/hqdefault.jpg";
-        img.alt = v.title || "";
-        img.onerror = function () { this.onerror = null; this.src = '/images/default-thumbnail.png'; };
+        // Use template string for faster rendering
+        const desc = (v.desc || "");
+        const truncDesc = desc.length > 90 ? desc.slice(0, 90) + "…" : desc;
 
-        const body = document.createElement("div"); body.className = "body";
-        const t = document.createElement("div"); t.className = "title"; t.textContent = v.title || "";
-        const cat = document.createElement("div"); cat.className = "cat"; cat.textContent = String(v.category || "");
-        const desc = document.createElement("div"); desc.className = "desc"; const raw = (v.desc || ""); desc.textContent = raw.length > 90 ? (raw.slice(0, 90) + "…") : raw;
-        const meta = document.createElement("div"); meta.className = "meta"; meta.textContent = compactMeta(v.view_count, v.like_count, v.comment_count);
+        a.innerHTML = `
+          <img class="thumb" loading="lazy" decoding="async" width="320" height="180"
+               src="https://i.ytimg.com/vi/${v.video_id}/hqdefault.jpg"
+               alt="${(v.title || '').replace(/"/g, '&quot;')}"
+               onerror="this.onerror=null;this.src='/images/default-thumbnail.png'">
+          <div class="body">
+            <div class="title">${v.title || ''}</div>
+            <div class="cat">${v.category || ''}</div>
+            <div class="desc">${truncDesc}</div>
+            <div class="meta">${compactMeta(v.view_count, v.like_count, v.comment_count)}</div>
+          </div>
+        `;
 
-        body.appendChild(t); body.appendChild(cat); body.appendChild(desc); body.appendChild(meta);
-        a.appendChild(img); a.appendChild(body);
         return a;
       }
 
       applyFilters();
+    })();
+  </script>
+
+  <!-- Language Switcher -->
+  <script>
+    (function () {
+      const langBtn = document.getElementById('lang-btn');
+      const langPanel = document.getElementById('lang-panel');
+      const langSwitcher = document.getElementById('lang-switcher');
+
+      if (!langBtn || !langPanel) return;
+
+      // Toggle panel
+      langBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = langPanel.style.display === 'block';
+        langPanel.style.display = isOpen ? 'none' : 'block';
+      });
+
+      // Close on outside click
+      document.addEventListener('click', function (e) {
+        if (langSwitcher && !langSwitcher.contains(e.target)) {
+          langPanel.style.display = 'none';
+        }
+      });
+
+      // Get current language from localStorage or default to 'en'
+      const storageKey = 'mm.lang';
+      const current = (localStorage.getItem(storageKey) || 'en').toLowerCase();
+
+      // Set current language as active
+      document.querySelectorAll('.lang-option').forEach(btn => {
+        if (btn.getAttribute('data-lang') === current) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Language option click handler
+      document.querySelectorAll('.lang-option').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const lang = this.getAttribute('data-lang') || 'en';
+          localStorage.setItem(storageKey, lang);
+
+          // Set cookie for cross-subdomain support
+          try {
+            const domain = window.location.hostname.includes('martoccimayhem.com') ? '.martoccimayhem.com' : '';
+            document.cookie = `mm.lang=${lang}; path=/; max-age=31536000${domain ? `; domain=${domain}` : ''}`;
+          } catch (e) { }
+
+          // Update active state
+          document.querySelectorAll('.lang-option').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+
+          // Close panel
+          langPanel.style.display = 'none';
+
+          // Set HTML lang attribute
+          try { document.documentElement.setAttribute('lang', lang); } catch (e) { }
+
+          // Reload to apply new language
+          window.location.reload();
+        });
+      });
     })();
   </script>
   <script src="/assets/i18n.js" defer></script>
