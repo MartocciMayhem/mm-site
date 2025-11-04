@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1" <title>{{ site_name or 'Your channel' }}</title>
   <title>{{ site_name or 'Your channel' }}</title>
   <meta name="description" content="{{ site_description or 'Explore videos and updates.' }}">
   <meta name="generator" content="Mayhem Maker {{ app_version }} ({{ build_stamp }})">
@@ -1077,7 +1077,7 @@
 
       function card(v) {
         const a = document.createElement("a");
-        a.href = "./videos/" + (v.slug || "") + ".html";
+        a.href = "videos/" + (v.slug || "") + ".html";
         a.className = "card";
 
         const desc = (v.desc || "");
