@@ -454,7 +454,9 @@
 <body>
   <header>
     <a class="brand" href="{{ site_url }}"><img src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28"
-        height="28" alt="{{ site_name or 'Channel logo' }}" onerror="this.onerror=null;this.src='/images/JasonMartocciLogo.webp';"><span data-i18n="hero_title">{{ site_name or 'Your channel'
+        height="28" alt="{{ site_name or 'Channel logo' }}"
+        onerror="this.onerror=null;this.src='/images/JasonMartocciLogo.webp';"><span data-i18n="hero_title">{{ site_name
+        or 'Your channel'
         }}</span></a>
     <h1 class="site-title" data-i18n="tagline">{{ site_tagline or 'Slice • Smash • Laugh • Repeat 🔥' }}</h1>
     <div class="lang-switcher" id="lang-switcher">
@@ -505,7 +507,8 @@
 
   <footer>
     <div class="footer-inner">
-      <div><span data-i18n="copyright_prefix">©</span> {{ current_year }} <a href="{{ brand_link }}" target="_blank" rel="noopener noreferrer">Martocci Mayhem</a></div>
+      <div><span data-i18n="copyright_prefix">©</span> {{ current_year }} <a href="{{ brand_link }}" target="_blank"
+          rel="noopener noreferrer">Martocci Mayhem</a></div>
 
       <style>
         .socials {
@@ -549,8 +552,8 @@
 
       <nav class="socials" aria-label="Social links">
         <!-- X / Twitter -->
-        <a class="social-btn" href="{{ socialX }}" target="_blank" rel="noopener noreferrer"
-          aria-label="X (Twitter)" title="X (Twitter)">
+        <a class="social-btn" href="{{ socialX }}" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"
+          title="X (Twitter)">
           <svg viewBox="0 0 1200 1227" aria-hidden="true">
             <path
               d="M714 519 1160 0H1064L663 464 357 0H0l463 681L0 1227h96l424-483 330 483h357L714 519ZM556 676l-49-70-389-553h167l314 445 49 70 401 569h-167L556 676Z" />
@@ -558,8 +561,8 @@
         </a>
 
         <!-- TikTok -->
-        <a class="social-btn" href="{{ socialTikTok }}" target="_blank" rel="noopener noreferrer"
-          aria-label="TikTok" title="TikTok">
+        <a class="social-btn" href="{{ socialTikTok }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
+          title="TikTok">
           <svg viewBox="0 0 48 48" aria-hidden="true">
             <path
               d="M41,18.6c-3.4,0-6.6-1.1-9.2-3.1v12.4c0,7.8-6.3,14.1-14.1,14.1S3.5,35.7,3.5,27.9c0-6.3,4.1-11.6,9.8-13.4v6.3 c-2.1,1.3-3.5,3.7-3.5,6.4c0,4.1,3.4,7.5,7.5,7.5s7.5-3.4,7.5-7.5V6.5h6.4c0.6,3.6,3.4,6.6,7,7.5V18.6z" />
@@ -567,8 +570,8 @@
         </a>
 
         <!-- YouTube -->
-        <a class="social-btn" href="{{ socialYouTube }}" target="_blank" rel="noopener noreferrer"
-          aria-label="YouTube" title="YouTube">
+        <a class="social-btn" href="{{ socialYouTube }}" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
+          title="YouTube">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M23.498 6.186a2.974 2.974 0 0 0-2.093-2.103C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.405.583a2.974 2.974 0 0 0-2.093 2.103C0 8.095 0 12 0 12s0 3.905.502 5.814a2.974 2.974 0 0 0 2.093 2.103C4.495 20.5 12 20.5 12 20.5s7.505 0 9.405-.583a2.974 2.974 0 0 0 2.093-2.103C24 15.905 24 12 24 12s0-3.905-.502-5.814ZM9.75 15.5v-7l6.5 3.5-6.5 3.5Z" />
@@ -594,8 +597,8 @@
         </a>
 
         <!-- LinkedIn -->
-        <a class="social-btn" href="{{ socialLinkedIn }}" target="_blank"
-          rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+        <a class="social-btn" href="{{ socialLinkedIn }}" target="_blank" rel="noopener noreferrer"
+          aria-label="LinkedIn" title="LinkedIn">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.5 8.98h2.96V21H3.5zM9 8.98h2.84v1.63h.04c.4-.75 1.38-1.54 2.84-1.54 3.03 0 3.59 1.99 3.59 4.57V21h-2.96v-4.92c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.58V21H9z" />
@@ -681,8 +684,10 @@
 
       function card(v) {
         const a = document.createElement("a");
-        // Ensure link works regardless of trailing slash
-        const currentPath = window.location.pathname.replace(/\/?$/, '/');
+        // Ensure link works regardless of trailing slash or index.html
+        const currentPath = window.location.pathname
+          .replace(/\/index\.html$/, '')  // Remove /index.html if present
+          .replace(/\/?$/, '/');           // Ensure trailing slash
         a.href = currentPath + "videos/" + (v.slug || "") + ".html";
         a.className = "card";
 
