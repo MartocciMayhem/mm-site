@@ -23,6 +23,15 @@ function sanitizeSlug(slug) {
     .replace(/\/+/g, "/") || "site";
 }
 
+function normalizeChannelHandle(handle, fallback) {
+  const base = (handle ?? "").toString().trim();
+  const cleaned = base.replace(/^@+/, "").replace(/[^a-z0-9._-]+/gi, "");
+  if (cleaned) return cleaned;
+  const fallbackValue = (fallback ?? "martoccimayhem").toString().trim();
+  const fallbackClean = fallbackValue.replace(/^@+/, "").replace(/[^a-z0-9._-]+/gi, "");
+  return fallbackClean || "martoccimayhem";
+}
+
 function slugifyTitle(title, fallback) {
   const safe = (title || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   const suffix = (fallback || "video").slice(0, 6).toLowerCase();
@@ -182,9 +191,12 @@ async function main() {
   const siteLogoUrl = config.siteLogoUrl || "/images/JasonMartocciLogo.webp";
   const siteEnabled = config.siteEnabled !== false;
 
+  const fallbackHandleSeed = config.channelHandle ?? data[0]?.channel_handle ?? data[0]?.channel_title ?? siteName;
+  const handleCore = normalizeChannelHandle(fallbackHandleSeed, siteName);
   const channel = {
     title: config.channelTitle || data[0]?.channel_title || siteName,
-    handle: config.channelHandle || `@${sanitizeSlug((data[0]?.channel_title || siteName).replace(/[^a-z0-9]+/gi, ""))}`,
+    handle: `@${handleCore}`,
+    handleForUrl: handleCore,
     subscriberCount: toNumber(config.subscriberCount ?? data[0]?.subs, 0),
   };
 
@@ -211,7 +223,7 @@ async function main() {
   // Social media links with fallbacks
   const socialX = config.socialX || "https://x.com/MartocciMayhem";
   const socialTikTok = config.socialTikTok || "https://www.tiktok.com/@MartocciMayhem";
-  const socialYouTube = config.socialYouTube || `https://www.youtube.com/@${channel.handle.replace('@', '')}`;
+  const socialYouTube = config.socialYouTube || `https://www.youtube.com/@${channel.handleForUrl}`;
   const socialInstagram = config.socialInstagram || "https://www.instagram.com/MartocciMayhem";
   const socialFacebook = config.socialFacebook || "https://www.facebook.com/MartocciMayhem";
   const socialLinkedIn = config.socialLinkedIn || "https://www.linkedin.com/company/MartocciMayhem";
@@ -307,6 +319,7 @@ async function main() {
       tags: video.tags,
       channel_title: channel.title,
       channel_handle: channel.handle,
+      channel_handle_for_url: channel.handleForUrl,
       subscriber_count: channel.subscriberCount.toLocaleString("en-US"),
       subs_known: channel.subscriberCount > 0,
       video_schema: buildVideoSchema(video, meta, channel),
@@ -346,4 +359,3 @@ main().catch((err) => {
   console.error("[mm-site] build failed", err);
   process.exit(1);
 });
-

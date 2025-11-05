@@ -92,6 +92,18 @@
       display: block;
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* ===== Header ===== */
     header {
       position: relative;
@@ -103,6 +115,7 @@
       background: rgba(5, 6, 12, 0.8);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      z-index: 40;
     }
 
     header .brand {
@@ -155,9 +168,6 @@
         text-align: center;
         margin-top: 4px;
       }
-    }
-
-    }
     }
 
     /* ===== Main content ===== */
@@ -427,7 +437,7 @@
       padding: 16px;
       min-width: 220px;
       box-shadow: var(--mm-shadow-lg), 0 0 0 1px var(--mm-surface-glow);
-      z-index: 1001;
+      z-index: 2000;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
@@ -582,7 +592,7 @@
     <a class="brand" href="{{ site_url }}/index.html">
       <img src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28" height="28" alt="{{ site_name }}"
         onerror="this.onerror=null;this.src='/images/JasonMartocciLogo.webp';">
-      <span data-i18n="hero_title">{{ site_name }}</span>
+      <span class="sr-only" data-i18n="hero_title">{{ site_name }}</span>
     </a>
     <h1 class="page-title">{{ title | truncate(60) }}</h1>
     <div class="lang-switcher" id="lang-switcher">
@@ -625,7 +635,7 @@
           <span><span data-i18n="likes_label">Likes:</span> {{ like_count }}</span>
           <span>
             <span data-i18n="channel_label">Channel:</span>
-            <a href="https://www.youtube.com/@{{ channel_handle }}" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/@{{ channel_handle_for_url or (channel_handle | replace('@', '')) }}" target="_blank" rel="noopener">
               {{ channel_title or channel_handle }}
             </a>
           </span>
@@ -636,7 +646,7 @@
 
         <p style="margin:.4rem 0 0">
           <a class="link" data-i18n="subscribe_cta"
-            href="https://www.youtube.com/@{{ channel_handle }}?sub_confirmation=1" target="_blank"
+            href="https://www.youtube.com/@{{ channel_handle_for_url or (channel_handle | replace('@', '')) }}?sub_confirmation=1" target="_blank"
             rel="noopener">Subscribe</a>
           &nbsp;|&nbsp;
           <a class="link" data-i18n="watch_on_youtube" href="https://www.youtube.com/watch?v={{ video_id }}"
@@ -843,7 +853,7 @@
         {% if related and related|length > 0 %}
         <div class="grid">
           {% for r in related %}
-          <a class="rec-card" href="./{{ r.slug }}.html">
+          <a class="rec-card" href="videos/{{ r.slug }}.html">
             <img class="thumb" decoding="async" loading="lazy"
               src="https://i.ytimg.com/vi/{{ r.video_id }}/hqdefault.jpg" width="320" height="180" alt="{{ r.title }}"
               onerror="this.onerror=null;this.src='/images/default-thumbnail.png'">
