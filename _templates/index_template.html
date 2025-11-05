@@ -8,6 +8,7 @@
   <meta name="description" content="{{ site_description or 'Explore videos and updates.' }}">
   <meta name="generator" content="Mayhem Maker {{ app_version }} ({{ build_stamp }})">
   <link rel="canonical" href="{{ site_url }}">
+  <base href="{{ site_url }}/">
   <link rel="icon" href="/images/favicon.ico">
   <link rel="stylesheet" href="/assets/light.css" media="(prefers-color-scheme: light)">
 
@@ -765,8 +766,8 @@
 
 <body>
   <header>
-    <a class="brand" href="{{ site_url }}"><img src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28"
-        height="28" alt="{{ site_name or 'Channel logo' }}"
+    <a class="brand" href="{{ site_url }}/index.html"><img src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}"
+        width="28" height="28" alt="{{ site_name or 'Channel logo' }}"
         onerror="this.onerror=null;this.src='/images/JasonMartocciLogo.webp';"><span data-i18n="hero_title">{{ site_name
         or 'Your channel'
         }}</span></a>
@@ -842,8 +843,9 @@
         <div class="filters" id="filters"></div>
       </div>
       <div class="search-row">
-        <input id="q" class="search" type="search" placeholder="Search titles, descriptions, tags…"
-          data-i18n="search_placeholder">
+        <div class="search">
+          <input id="q" type="search" placeholder="Search titles, descriptions, tags…" data-i18n="search_placeholder">
+        </div>
       </div>
     </div>
 
