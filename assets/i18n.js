@@ -2,11 +2,11 @@
 (function () {
     const storageKey = "mm.lang";
     const defaultLang = "en";
-    
+
     function readCookie(name) {
         try { return document.cookie.split(/;\s*/).map(x => x.split('=')).find(p => p[0] === name)?.[1] || null; } catch { return null; }
     }
-    
+
     const current = (localStorage.getItem(storageKey) || readCookie('mm.lang') || defaultLang).toLowerCase();
 
     function apply(dict) {
@@ -14,9 +14,9 @@
             console.warn('[i18n] No translations available for', current);
             return;
         }
-        
+
         console.log('[i18n] Applying translations for:', current, 'Keys:', Object.keys(dict).length);
-        
+
         // direct data-i18n replacements
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
@@ -29,14 +29,14 @@
                 el.textContent = value;
             }
         });
-        
+
         // category chip 'All'
         if (dict.category_all) {
             document.querySelectorAll('#filters button').forEach(b => {
                 if (b.textContent.trim() === 'All') b.textContent = dict.category_all;
             });
         }
-        
+
         // meta labels inside generated cards
         ['.meta', '.mini-meta'].forEach(sel => {
             document.querySelectorAll(sel).forEach(el => {
@@ -47,8 +47,12 @@
     }
 
     function loadTranslations(lang) {
-        // Load from local translations.js file
-        return fetch('/assets/translations.js')
+        // Load from local translations.js file (relative path for channel sites)
+        const translationsPath = window.location.pathname.includes('/videos/')
+            ? '../assets/translations.js'  // From video pages
+            : 'assets/translations.js';     // From channel index
+
+        return fetch(translationsPath)
             .then(r => r.text())
             .then(code => {
                 // Extract TRANSLATIONS object from the code
@@ -71,16 +75,22 @@
     const langPanel = document.getElementById('lang-panel');
     const langSwitcher = document.getElementById('lang-switcher');
 
+    console.log('[i18n] Elements found:', { langBtn: !!langBtn, langPanel: !!langPanel, langSwitcher: !!langSwitcher });
+
     if (langBtn && langPanel) {
+        console.log('[i18n] Setting up language switcher event listeners');
+        
         // Toggle panel
-        langBtn.addEventListener('click', function(e) {
+        langBtn.addEventListener('click', function (e) {
+            console.log('[i18n] Button clicked!');
             e.stopPropagation();
             const isOpen = langPanel.style.display !== 'none';
             langPanel.style.display = isOpen ? 'none' : 'block';
+            console.log('[i18n] Panel display:', langPanel.style.display);
         });
 
         // Close on outside click
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (langSwitcher && !langSwitcher.contains(e.target)) {
                 langPanel.style.display = 'none';
             }
@@ -95,7 +105,7 @@
 
         // Language option click handler
         document.querySelectorAll('.lang-option').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 const lang = this.getAttribute('data-lang') || defaultLang;
                 localStorage.setItem(storageKey, lang);
                 // also set cross-subdomain cookie if possible
@@ -103,7 +113,7 @@
                     const domain = window.location.hostname.includes('martoccimayhem.com') ? '.martoccimayhem.com' : undefined;
                     document.cookie = `mm.lang=${lang}; path=/; max-age=31536000${domain ? `; domain=${domain}` : ''}`;
                 } catch { }
-                
+
                 // Load and apply new language translations
                 loadTranslations(lang).then(apply);
                 try { document.documentElement.setAttribute('lang', lang); } catch { }
