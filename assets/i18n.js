@@ -1,33 +1,42 @@
 "use strict";
 (function () {
-    const APP_HOST = "https://app.martoccimayhem.com"; // production app origin
     const storageKey = "mm.lang";
     const defaultLang = "en";
+    
     function readCookie(name) {
         try { return document.cookie.split(/;\s*/).map(x => x.split('=')).find(p => p[0] === name)?.[1] || null; } catch { return null; }
     }
+    
     const current = (localStorage.getItem(storageKey) || readCookie('mm.lang') || defaultLang).toLowerCase();
 
     function apply(dict) {
-        if (!dict) return;
+        if (!dict || typeof dict !== 'object') {
+            console.warn('[i18n] No translations available for', current);
+            return;
+        }
+        
+        console.log('[i18n] Applying translations for:', current, 'Keys:', Object.keys(dict).length);
+        
         // direct data-i18n replacements
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (!key) return;
             const value = dict[key];
             if (!value) return;
-            if (el.tagName === 'INPUT') {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                 el.setAttribute('placeholder', value);
             } else {
                 el.textContent = value;
             }
         });
+        
         // category chip 'All'
         if (dict.category_all) {
             document.querySelectorAll('#filters button').forEach(b => {
                 if (b.textContent.trim() === 'All') b.textContent = dict.category_all;
             });
         }
+        
         // meta labels inside generated cards
         ['.meta', '.mini-meta'].forEach(sel => {
             document.querySelectorAll(sel).forEach(el => {
@@ -37,14 +46,25 @@
         });
     }
 
-    function fetchDict(lang) {
-        return fetch(APP_HOST + '/api/i18n/' + lang, { credentials: 'omit' })
-            .then(r => r.ok ? r.json() : null)
-            .then(j => j && j.dict || {})
-            .catch(() => ({}));
+    function loadTranslations(lang) {
+        // Load from local translations.js file
+        return fetch('/assets/translations.js')
+            .then(r => r.text())
+            .then(code => {
+                // Extract TRANSLATIONS object from the code
+                const match = code.match(/const TRANSLATIONS = ({[\s\S]+?});/);
+                if (!match) return {};
+                const translationsObj = eval('(' + match[1] + ')');
+                return translationsObj[lang] || translationsObj['en'] || {};
+            })
+            .catch(err => {
+                console.error('[i18n] Failed to load translations:', err);
+                return {};
+            });
     }
 
-    fetchDict(current).then(apply);
+    // Apply translations on load
+    loadTranslations(current).then(apply);
 
     // Modern language switcher with globe icon and dropdown
     const langBtn = document.getElementById('lang-btn');
@@ -83,7 +103,9 @@
                     const domain = window.location.hostname.includes('martoccimayhem.com') ? '.martoccimayhem.com' : undefined;
                     document.cookie = `mm.lang=${lang}; path=/; max-age=31536000${domain ? `; domain=${domain}` : ''}`;
                 } catch { }
-                fetchDict(lang).then(apply);
+                
+                // Load and apply new language translations
+                loadTranslations(lang).then(apply);
                 try { document.documentElement.setAttribute('lang', lang); } catch { }
 
                 // Update active state
