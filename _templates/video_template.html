@@ -860,7 +860,7 @@
         {% if related and related|length > 0 %}
         <div class="grid">
           {% for r in related %}
-          <a class="rec-card" href="../videos/{{ r.slug }}.html">
+          <a class="rec-card" href="./{{ r.slug }}.html">
             <img class="thumb" decoding="async" loading="lazy"
               src="https://i.ytimg.com/vi/{{ r.video_id }}/hqdefault.jpg" width="320" height="180" alt="{{ r.title }}"
               onerror="this.onerror=null;this.src='/images/default-thumbnail.png'">
