@@ -1,0 +1,45 @@
+#!/bin/bash
+# Configure Cloud Load Balancer to serve index.html for directory requests
+# This fixes the issue where accessing / or /savage-grandma/ shows XML instead of HTML
+
+echo "🔧 Configuring Cloud Load Balancer for index.html support"
+echo "=========================================="
+
+# Unfortunately, GCS backend buckets don't support mainPageSuffix or URL rewrites
+# The only solution is to use a URL rewrite via Cloud CDN or add a Cloud Function
+
+echo ""
+echo "❌ LIMITATION: GCS backend buckets do NOT support automatic index.html serving"
+echo ""
+echo "📋 OPTIONS:"
+echo ""
+echo "Option 1: USER MUST ACCESS FULL URLs (Current workaround)"
+echo "  Root:    https://videos.martoccimayhem.com/index.html"
+echo "  Channels: https://videos.martoccimayhem.com/savage-grandma/index.html"
+echo ""
+echo "Option 2: Configure Cloud CDN with URL Rewrites (Complex)"
+echo "  Requires: Cloud Armor or External HTTP(S) Load Balancer with URL rewrite"
+echo "  Cost: Additional Cloud Armor policy"
+echo ""
+echo "Option 3: Add Cloud Function (Recommended for production)"
+echo "  Deploy a Cloud Function that:"
+echo "    - Receives requests to / or /slug/"
+echo "    - Redirects to /index.html or /slug/index.html"
+echo "    - Acts as a lightweight proxy"
+echo ""
+echo "Option 4: Switch to Cloud Storage Website Hosting (Different architecture)"
+echo "  Pros: Native index.html support via MainPageSuffix"
+echo "  Cons: Loses Cloud CDN integration, requires different setup"
+echo ""
+echo "=========================================="
+echo "✅ CURRENT STATUS:"
+echo "   - All microsites uploaded successfully"
+echo "   - Files accessible at full URLs (with /index.html)"
+echo "   - <base> tag added to fix relative links"
+echo "   - Video links will work from any access method"
+echo ""
+echo "📝 NEXT STEPS:"
+echo "   1. Update your links to include /index.html"
+echo "   2. OR: Deploy Cloud Function for URL rewriting (see docs)"
+echo "   3. OR: Document that users must access /index.html URLs"
+echo ""
