@@ -588,12 +588,6 @@
 </head>
 
 <body>
-  <!-- LIVE BUILD INDICATOR -->
-  <div
-    style="position:fixed;top:10px;right:10px;background:#22c55e;color:#fff;padding:8px 16px;border-radius:6px;font-weight:bold;font-size:14px;z-index:99999;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-    🟢 LIVE - Video Page
-  </div>
-
   <header>
     <a class="brand" href="{{ site_url }}/index.html">
       <img src="{{ site_logo_url or '/images/JasonMartocciLogo.webp' }}" width="28" height="28" alt="{{ site_name }}"
@@ -860,7 +854,7 @@
         {% if related and related|length > 0 %}
         <div class="grid">
           {% for r in related %}
-          <a class="rec-card" href="./{{ r.slug }}.html">
+          <a class="rec-card" href="../videos/{{ r.slug }}.html">
             <img class="thumb" decoding="async" loading="lazy"
               src="https://i.ytimg.com/vi/{{ r.video_id }}/hqdefault.jpg" width="320" height="180" alt="{{ r.title }}"
               onerror="this.onerror=null;this.src='/images/default-thumbnail.png'">
