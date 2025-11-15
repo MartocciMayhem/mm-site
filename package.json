@@ -1,17 +1,18 @@
 {
-    "name":  "mm-site",
-    "version":  "0.1.0",
-    "private":  true,
-    "scripts":  {
-                    "build":  "node build.js",
-                    "start":  "npx serve dist -l 4321",
-                    "preview:sites":  "node ../scripts/serve-mm-sites.mjs",
-                    "preview:sites:port":  "node ../scripts/serve-mm-sites.mjs 4333"
-                },
-    "dependencies":  {
-                         "nunjucks":  "^3.2.4"
-                     },
-    "devDependencies":  {
-                            "serve":  "^14.2.3"
-                        }
+    "name": "mm-site",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "build": "node build.js",
+        "build:portal": "node build-portal.js",
+        "start": "npx serve dist -l 4321",
+        "preview:sites": "node ../scripts/serve-mm-sites.mjs",
+        "preview:sites:port": "node ../scripts/serve-mm-sites.mjs 4333"
+    },
+    "dependencies": {
+        "nunjucks": "^3.2.4"
+    },
+    "devDependencies": {
+        "serve": "^14.2.3"
+    }
 }

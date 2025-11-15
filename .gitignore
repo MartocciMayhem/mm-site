@@ -53,4 +53,5 @@ _templates/*.bak-*
 node_modules/
 .next/
 dist/
+portal-dist/
 build/
