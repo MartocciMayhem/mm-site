@@ -296,18 +296,31 @@
         let allChannels = [];
         let filteredChannels = [];
 
+        function sanitizeChannels(channels) {
+            if (!Array.isArray(channels)) return [];
+            return channels.filter(channel => {
+                if (!channel || typeof channel !== 'object') return false;
+                if (channel.isActive === false) return false;
+                if (channel.siteEnabled === false) return false;
+                if (!channel.slug || typeof channel.slug !== 'string') return false;
+                return true;
+            });
+        }
+
         async function loadChannels() {
             try {
                 const response = await fetch('https://martoccimayhem.com/api/portal/microsites');
                 if (!response.ok) throw new Error(`HTTP ${response.status}: Failed to load channels`);
 
                 const data = await response.json();
-                allChannels = data.microsites || [];
+                allChannels = sanitizeChannels(data.microsites);
                 filteredChannels = [...allChannels];
 
                 // Update stats
-                document.getElementById('total-channels').textContent = data.total || 0;
-                document.getElementById('total-videos').textContent = data.totalVideos || 0;
+                const totalChannels = allChannels.length;
+                const totalVideos = allChannels.reduce((sum, channel) => sum + (Number(channel.videoCount) || 0), 0);
+                document.getElementById('total-channels').textContent = totalChannels;
+                document.getElementById('total-videos').textContent = totalVideos;
 
                 // Render channels
                 renderChannels();
@@ -338,8 +351,18 @@
             grid.style.display = 'grid';
             empty.style.display = 'none';
 
-            grid.innerHTML = filteredChannels.map(channel => `
-                <a href="/${escapeHtml(channel.slug)}/" class="channel-card">
+            grid.innerHTML = filteredChannels.map(channel => {
+                const slug = typeof channel.slug === 'string' ? channel.slug.trim() : '';
+                const encodedSlug = slug ? encodeURIComponent(slug) : '';
+                const fallbackHref = encodedSlug ? `/${encodedSlug}/` : '#';
+                const rawHref = (typeof channel.siteUrl === 'string' && channel.siteUrl.trim()) ? channel.siteUrl.trim() : fallbackHref;
+                const safeHref = escapeHtml(rawHref);
+                const isExternal = /^https?:/i.test(rawHref);
+                const targetAttr = isExternal ? ' target="_blank"' : '';
+                const relAttr = isExternal ? ' rel="noopener noreferrer"' : '';
+
+                return `
+                <a href="${safeHref}" class="channel-card"${targetAttr}${relAttr}>
                     <h3 class="channel-title">${escapeHtml(channel.channelName || channel.channelTitle || 'Untitled Channel')}</h3>
                     <div>
                         <span class="plan-badge plan-${escapeHtml(channel.userPlan || 'free')}">${escapeHtml(channel.userPlan || 'free')}</span>
@@ -351,7 +374,8 @@
                         ${channel.views ? `<span class="channel-meta-item">👁️ ${formatNumber(channel.views)} views</span>` : ''}
                     </div>
                 </a>
-            `).join('');
+            `;
+            }).join('');
         }
 
         // Search functionality
